@@ -39,7 +39,7 @@ public class FMSRuleTypePostgresDaoImpl implements FMSRuleTypePostgresDao {
 	@Override
 	public int insert(FMSRuleType fmsRuleType) throws Exception {
 
-		if (!FMSUtil.isAnyObjectNull(jdbcNTemplate)) {
+		if (!FMSUtil.getInstance().isAnyObjectNull(jdbcNTemplate)) {
 			log.info("Autowired object(s) null! Exit from method");
 			return 0;
 		}
@@ -62,7 +62,7 @@ public class FMSRuleTypePostgresDaoImpl implements FMSRuleTypePostgresDao {
 	@Override
 	public List<FMSRuleType> getAll() throws Exception {
 
-		if (!FMSUtil.isAnyObjectNull(jdbcTemplate, jdbcNTemplate)) {
+		if (!FMSUtil.getInstance().isAnyObjectNull(jdbcTemplate, jdbcNTemplate)) {
 			log.info("Autowired object(s) null! Exit from method");
 			return null;
 		}
@@ -84,9 +84,9 @@ public class FMSRuleTypePostgresDaoImpl implements FMSRuleTypePostgresDao {
 			log.error("Failed to fetch from DB " + ex.getMessage(), ex);
 			throw new RecordFetchException();
 		}
-		
+
 		log.info("allRuleTypeList in dao = " + allRuleTypeList);
-		
+
 		return allRuleTypeList;
 	}
 }

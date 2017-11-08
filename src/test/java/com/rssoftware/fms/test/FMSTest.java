@@ -71,7 +71,7 @@ public class FMSTest {
 		if (execotorService.isShutdown()) {
 			System.out.println("FMSPubStatus : " + fmsPubStatus + " FMSPubStatus : " + fmsPriStatus);
 
-			List<String> fmsMergedStatusList = FMSUtil.mergeLists(fmsPubStatus, fmsPriStatus);
+			List<String> fmsMergedStatusList = FMSUtil.getInstance().mergeLists(fmsPubStatus, fmsPriStatus);
 			System.out.println("FMSMergedStatus : " + fmsMergedStatusList);
 
 			int occurrences = Collections.frequency(fmsMergedStatusList, "R");
