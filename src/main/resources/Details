@@ -1,0 +1,20 @@
+#Emdpoints: Local testing:
+http://localhost:8900/health/
+http://localhost:8900/info/
+http://localhost:8900/metrics/
+http://localhost:8900/trace/
+
+
+http://localhost:8900/fms/
+http://localhost:8900/fms/ping
+http://localhost:8900/fms/version
+
+
+http://localhost:8900/fmsruletype/newruletype
+http://localhost:8900/fmsruletype/allruletypes
+
+
+http://localhost:8900/fmstxn/fraudcalc
+
+
+D:\Workspace-Eclipse-Gets\FMS\src\main\webapp\FMSServiceExtTest.html

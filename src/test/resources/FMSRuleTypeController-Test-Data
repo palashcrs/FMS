@@ -1,0 +1,21 @@
+#Endpoint: http://localhost:8900/fmsruletype/newruletype
+
+#Json-input:
+{
+   "merchantId":"MID3347",
+   "fmsRuleType":{
+      "ruleTypeId":"",
+      "ruleType":"Email",
+      "accessMode":"PUBLIC",
+      "action":"Review"
+   }
+}
+
+=============================================================================================
+
+#Endpoint: http://localhost:8900/fmsruletype/allruletypes
+
+#Json-input:
+{}
+
+=============================================================================================
