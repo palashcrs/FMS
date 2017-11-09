@@ -88,7 +88,7 @@ public class FMSCommonUtil {
 
 		return fmsStatus;
 	}
-	
+
 	public String isContainsAndSetStatus(String arg1, String arg2, String action) {
 		String fmsStatus = null;
 		if (arg1 != null) {
