@@ -21,25 +21,25 @@ public class FMSRuleConfiguration {
 	 */
 	public static List<String> triggerRule(List<FMSRuleDetails> ruleDetails, FMSRequest fmsRequest) {
 		List<String> fmsStatus = new ArrayList<>();
-		String email = null;
-		String cardNo = null;
-		String word = null;
+		String emailReq = null;
+		String cardNoReq = null;
+		String wordReq = null;
 
 		if (fmsRequest != null) {
-			email = fmsRequest.getEmail();
-			cardNo = fmsRequest.getCardNo();
-			word = fmsRequest.getWord();
+			emailReq = fmsRequest.getEmail();
+			cardNoReq = fmsRequest.getCardNo();
+			wordReq = fmsRequest.getWord();
 		}
 
 		if (ruleDetails != null) {
-			if (email != null || "".equals(email)) {
-				fmsStatus.add(triggerEmailRule(ruleDetails, email));
+			if (emailReq != null || "".equals(emailReq)) {
+				fmsStatus.add(triggerEmailRule(ruleDetails, emailReq));
 			}
-			if (cardNo != null || "".equals(cardNo)) {
-				fmsStatus.add(triggerCardNoRule(ruleDetails, cardNo));
+			if (cardNoReq != null || "".equals(cardNoReq)) {
+				fmsStatus.add(triggerCardNoRule(ruleDetails, cardNoReq));
 			}
-			if (word != null || "".equals(word)) {
-				fmsStatus.add(triggerWordRule(ruleDetails, word));
+			if (wordReq != null || "".equals(wordReq)) {
+				fmsStatus.add(triggerWordRule(ruleDetails, wordReq));
 			}
 		}
 
