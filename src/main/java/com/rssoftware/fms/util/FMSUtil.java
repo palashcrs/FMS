@@ -24,6 +24,15 @@ public class FMSUtil {
 		return Boolean.TRUE;
 	}
 
+	public boolean isEqual(String arg1, String arg2) {
+		boolean response = false;
+		if (arg1 != null && arg2 != null) {
+			response = arg1.equals(arg2);
+		}
+
+		return response;
+	}
+
 	public <T> List<T> mergeLists(List<T> list, List<T> list2) {
 		List<T> mergedList = new ArrayList<>();
 

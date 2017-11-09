@@ -1,5 +1,8 @@
 package com.rssoftware.fms.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.rssoftware.fms.common.FMSError;
 import com.rssoftware.fms.common.FMSErrorCode;
 import com.rssoftware.fms.common.FMSErrorCodeMap;
@@ -11,6 +14,8 @@ import com.rssoftware.fms.vo.FMSRequest;
 import com.rssoftware.fms.vo.FMSResponse;
 
 public class FMSCommonUtil {
+	
+	private static final Logger log = LoggerFactory.getLogger(FMSCommonUtil.class);
 
 	private static FMSCommonUtil fmsCommonUtil = new FMSCommonUtil();
 
@@ -67,6 +72,24 @@ public class FMSCommonUtil {
 				}
 			}
 		}
+	}
+
+	public String checkEqualAndSetStatus(String ruleType, String data, String action) {
+		log.info("checkEqualAndSetStatus :: inputs = " + ruleType + " " + data + " " + action);
+		String fmsStatus = null;
+		
+		if(ruleType != null){
+			if (ruleType.equals(data)) {
+				if ("Review".equalsIgnoreCase(action)) {
+					fmsStatus = "R";
+				} else if ("Decline".equalsIgnoreCase(action)) {
+					fmsStatus = "D";
+				}
+			}
+		}
+
+		log.info("checkEqualAndSetStatus :: fmsStatus = " + fmsStatus);
+		return fmsStatus;
 	}
 
 }

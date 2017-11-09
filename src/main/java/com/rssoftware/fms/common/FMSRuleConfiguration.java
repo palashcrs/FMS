@@ -69,7 +69,7 @@ public class FMSRuleConfiguration {
 				if ("Review".equalsIgnoreCase(rd.getAction())) {
 					fmsStatus = "R";
 				} else if ("Decline".equalsIgnoreCase(rd.getAction())) {
-					fmsStatus = "R";
+					fmsStatus = "D";
 				}
 			}
 		}
@@ -86,7 +86,7 @@ public class FMSRuleConfiguration {
 					if ("Review".equalsIgnoreCase(rd.getAction())) {
 						fmsStatus = "R";
 					} else if ("Decline".equalsIgnoreCase(rd.getAction())) {
-						fmsStatus = "R";
+						fmsStatus = "D";
 					}
 				}
 			}
