@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.RedisConnectionFailureException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rssoftware.fms.exception.CacheException;
@@ -46,7 +47,7 @@ public class FMSRuleTypeServiceImpl implements FMSRuleTypeService {
 		return rowsCreated;
 	}
 
-	@Transactional(rollbackFor = { RecordFetchException.class, CacheException.class })
+	@Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor = { RecordFetchException.class, CacheException.class })
 	@Override
 	public List<FMSRuleType> getAllRuleTypes() throws Exception {
 
