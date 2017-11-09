@@ -14,7 +14,7 @@ import com.rssoftware.fms.vo.FMSRequest;
 import com.rssoftware.fms.vo.FMSResponse;
 
 public class FMSCommonUtil {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(FMSCommonUtil.class);
 
 	private static FMSCommonUtil fmsCommonUtil = new FMSCommonUtil();
@@ -74,12 +74,10 @@ public class FMSCommonUtil {
 		}
 	}
 
-	public String checkEqualAndSetStatus(String ruleType, String data, String action) {
-		log.info("checkEqualAndSetStatus :: inputs = " + ruleType + " " + data + " " + action);
+	public String isEqualAndSetStatus(String arg1, String arg2, String action) {
 		String fmsStatus = null;
-		
-		if(ruleType != null){
-			if (ruleType.equals(data)) {
+		if (arg1 != null) {
+			if (arg1.equals(arg2)) {
 				if ("Review".equalsIgnoreCase(action)) {
 					fmsStatus = "R";
 				} else if ("Decline".equalsIgnoreCase(action)) {
@@ -88,7 +86,21 @@ public class FMSCommonUtil {
 			}
 		}
 
-		log.info("checkEqualAndSetStatus :: fmsStatus = " + fmsStatus);
+		return fmsStatus;
+	}
+	
+	public String isContainsAndSetStatus(String arg1, String arg2, String action) {
+		String fmsStatus = null;
+		if (arg1 != null) {
+			if (arg1.contains(arg2)) {
+				if ("Review".equalsIgnoreCase(action)) {
+					fmsStatus = "R";
+				} else if ("Decline".equalsIgnoreCase(action)) {
+					fmsStatus = "D";
+				}
+			}
+		}
+
 		return fmsStatus;
 	}
 

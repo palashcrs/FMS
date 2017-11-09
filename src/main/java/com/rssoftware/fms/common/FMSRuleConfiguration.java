@@ -3,7 +3,11 @@ package com.rssoftware.fms.common;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.rssoftware.fms.model.FMSRuleDetails;
+import com.rssoftware.fms.util.FMSCommonUtil;
 import com.rssoftware.fms.vo.FMSRequest;
 
 /**
@@ -11,6 +15,8 @@ import com.rssoftware.fms.vo.FMSRequest;
  * @since 2017-11-03
  */
 public class FMSRuleConfiguration {
+
+	private static final Logger log = LoggerFactory.getLogger(FMSRuleConfiguration.class);
 
 	public FMSRuleConfiguration() {
 
@@ -32,67 +38,45 @@ public class FMSRuleConfiguration {
 		}
 
 		if (ruleDetails != null) {
-			if (emailReq != null || "".equals(emailReq)) {
-				fmsStatus.add(triggerEmailRule(ruleDetails, emailReq));
-			}
-			if (cardNoReq != null || "".equals(cardNoReq)) {
-				fmsStatus.add(triggerCardNoRule(ruleDetails, cardNoReq));
-			}
-			if (wordReq != null || "".equals(wordReq)) {
-				fmsStatus.add(triggerWordRule(ruleDetails, wordReq));
-			}
-		}
-
-		return fmsStatus;
-	}
-
-	private static String triggerEmailRule(List<FMSRuleDetails> ruleDetails, String email) {
-		String fmsStatus = null;
-		for (FMSRuleDetails rd : ruleDetails) {
-			if (email.equals(rd.getEmail())) {
-				if ("Review".equalsIgnoreCase(rd.getAction())) {
-					fmsStatus = "R";
-				} else if ("Decline".equalsIgnoreCase(rd.getAction())) {
-					fmsStatus = "D";
-				}
-			}
-		}
-		System.out.println("Email rule fmsStatus = " + fmsStatus);
-
-		return fmsStatus;
-	}
-
-	private static String triggerCardNoRule(List<FMSRuleDetails> ruleDetails, String cardNo) {
-		String fmsStatus = null;
-		for (FMSRuleDetails rd : ruleDetails) {
-			if (cardNo.equals(rd.getCardNo())) {
-				if ("Review".equalsIgnoreCase(rd.getAction())) {
-					fmsStatus = "R";
-				} else if ("Decline".equalsIgnoreCase(rd.getAction())) {
-					fmsStatus = "D";
-				}
-			}
-		}
-		System.out.println("CardNo rule fmsStatus = " + fmsStatus);
-
-		return fmsStatus;
-	}
-
-	private static String triggerWordRule(List<FMSRuleDetails> ruleDetails, String word) {
-		String fmsStatus = null;
-		for (FMSRuleDetails rd : ruleDetails) {
-			if (rd != null && rd.getWord() != null) {
-				if (rd.getWord().contains(word)) {
-					if ("Review".equalsIgnoreCase(rd.getAction())) {
-						fmsStatus = "R";
-					} else if ("Decline".equalsIgnoreCase(rd.getAction())) {
-						fmsStatus = "D";
+			for (FMSRuleDetails rd : ruleDetails) {
+				if (rd != null) {
+					// ******************Trigger RuleType = EMAIL**********//
+					if ("EMAIL".equalsIgnoreCase(rd.getRuleType())) {
+						if (emailReq != null || "".equals(emailReq)) {
+							fmsStatus.add(triggerEmailRule(rd.getEmail(), emailReq, rd.getAction()));
+						}
+					}
+					// ******************Trigger RuleType = CARDNO**********//
+					if ("CARDNO".equalsIgnoreCase(rd.getRuleType())) {
+						if (cardNoReq != null || "".equals(cardNoReq)) {
+							fmsStatus.add(triggerCardNoRule(rd.getCardNo(), cardNoReq, rd.getAction()));
+						}
+					}
+					// ******************Trigger RuleType = WORD**********//
+					if ("WORD".equalsIgnoreCase(rd.getRuleType())) {
+						if (wordReq != null || "".equals(wordReq)) {
+							fmsStatus.add(triggerWordRule(rd.getWord(), wordReq, rd.getAction()));
+						}
 					}
 				}
 			}
 		}
-		System.out.println("Word rule fmsStatus = " + fmsStatus);
 
+		return fmsStatus;
+	}
+
+	private static String triggerEmailRule(String emailRule, String emailReq, String action) {
+		String fmsStatus = FMSCommonUtil.getInstance().isEqualAndSetStatus(emailRule, emailReq, action);
+		return fmsStatus;
+	}
+
+	private static String triggerCardNoRule(String cardNoRule, String cardNoReq, String action) {
+		String fmsStatus = FMSCommonUtil.getInstance().isEqualAndSetStatus(cardNoRule, cardNoReq, action);
+		return fmsStatus;
+	}
+
+	private static String triggerWordRule(String wordRule, String wordReq, String action) {
+		String fmsStatus = FMSCommonUtil.getInstance().isContainsAndSetStatus(wordRule, wordReq, action);
 		return fmsStatus;
 	}
 

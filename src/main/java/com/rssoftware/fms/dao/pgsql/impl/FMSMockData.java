@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.rssoftware.fms.model.FMSRuleDetails;
 import com.rssoftware.fms.vo.FMSRequest;
-import com.rssoftware.fms.vo.FMSResponse;
 
 public class FMSMockData {
 
@@ -87,6 +86,7 @@ public class FMSMockData {
 		privateRules.add(fmsRuleDetails2);
 		privateRules.add(fmsRuleDetails3);
 		privateRules.add(fmsRuleDetails4);
+
 		privateRules.add(fmsRuleDetails5);
 		privateRules.add(fmsRuleDetails6);
 
