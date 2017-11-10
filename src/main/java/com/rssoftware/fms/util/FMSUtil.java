@@ -25,17 +25,17 @@ public class FMSUtil {
 	}
 
 	public <T> List<T> mergeLists(List<T> list, List<T> list2) {
-		List<T> mergedList = new ArrayList<>();
+		List<T> mergedList = null;
 
-		if (list != null && list2 == null) {
-			mergedList.addAll(list);
+		if ((list != null && list.size() > 0) && (list2 == null || list2.isEmpty())) {
+			mergedList = new ArrayList<>(list);
 		}
-		if (list == null && list2 != null) {
-			mergedList.addAll(list2);
+		if ((list == null || list.isEmpty()) && (list2 != null && list2.size() > 0)) {
+			mergedList = new ArrayList<>(list2);
 		}
-		if (list != null && list2 != null) {
-			mergedList.addAll(list);
-			mergedList.addAll(2, list2);
+		if ((list != null && list.size() > 0) && (list2 != null && list2.size() > 0)) {
+			mergedList = new ArrayList<>(list);
+			mergedList.addAll(1, list2);
 		}
 
 		return mergedList;

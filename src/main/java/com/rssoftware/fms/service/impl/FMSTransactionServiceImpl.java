@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rssoftware.fms.common.FMSRuleConfiguration;
+import com.rssoftware.fms.common.FMSRuleDetailsConstant;
 import com.rssoftware.fms.constant.FMSTxnStatusConstant;
 import com.rssoftware.fms.exception.CacheException;
 import com.rssoftware.fms.facade.FMSFacade;
@@ -96,11 +97,11 @@ public class FMSTransactionServiceImpl implements FMSTransactionService {
 		String fmsTxnStatus = null;
 
 		if (mergedList != null) {
-			if (mergedList.contains("D")) {
+			if (mergedList.contains(FMSRuleDetailsConstant.RULETYPE_ACTION_D.getRuleTypeValue())) {
 				fmsTxnStatus = FMSTxnStatusConstant.DECLINE.toString();
 			} else {
 				int mergedListSize = mergedList.size();
-				int occurrencesOfReview = Collections.frequency(mergedList, "R");
+				int occurrencesOfReview = Collections.frequency(mergedList, FMSRuleDetailsConstant.RULETYPE_ACTION_R.getRuleTypeValue());
 				int occurrencesOfOthers = mergedListSize - occurrencesOfReview;
 				if (occurrencesOfReview > occurrencesOfOthers) {
 					fmsTxnStatus = FMSTxnStatusConstant.REVIEW.toString();

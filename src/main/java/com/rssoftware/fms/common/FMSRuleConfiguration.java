@@ -41,19 +41,19 @@ public class FMSRuleConfiguration {
 			for (FMSRuleDetails rd : ruleDetails) {
 				if (rd != null) {
 					// ******************Trigger RuleType = EMAIL**********//
-					if ("EMAIL".equalsIgnoreCase(rd.getRuleType())) {
+					if (FMSRuleDetailsConstant.RULETYPE_EMAIL.getRuleTypeValue().equalsIgnoreCase(rd.getRuleType())) {
 						if (emailReq != null || "".equals(emailReq)) {
 							fmsStatus.add(triggerEmailRule(rd.getEmail(), emailReq, rd.getAction()));
 						}
 					}
 					// ******************Trigger RuleType = CARDNO**********//
-					if ("CARDNO".equalsIgnoreCase(rd.getRuleType())) {
+					if (FMSRuleDetailsConstant.RULETYPE_CARDNO.getRuleTypeValue().equalsIgnoreCase(rd.getRuleType())) {
 						if (cardNoReq != null || "".equals(cardNoReq)) {
 							fmsStatus.add(triggerCardNoRule(rd.getCardNo(), cardNoReq, rd.getAction()));
 						}
 					}
 					// ******************Trigger RuleType = WORD**********//
-					if ("WORD".equalsIgnoreCase(rd.getRuleType())) {
+					if (FMSRuleDetailsConstant.RULETYPE_WORD.getRuleTypeValue().equalsIgnoreCase(rd.getRuleType())) {
 						if (wordReq != null || "".equals(wordReq)) {
 							fmsStatus.add(triggerWordRule(rd.getWord(), wordReq, rd.getAction()));
 						}
@@ -67,16 +67,19 @@ public class FMSRuleConfiguration {
 
 	private static String triggerEmailRule(String emailRule, String emailReq, String action) {
 		String fmsStatus = FMSCommonUtil.getInstance().isEqualAndSetStatus(emailRule, emailReq, action);
+		System.out.println("Email rule status : " + fmsStatus);
 		return fmsStatus;
 	}
 
 	private static String triggerCardNoRule(String cardNoRule, String cardNoReq, String action) {
 		String fmsStatus = FMSCommonUtil.getInstance().isEqualAndSetStatus(cardNoRule, cardNoReq, action);
+		System.out.println("CardNo rule status : " + fmsStatus);
 		return fmsStatus;
 	}
 
 	private static String triggerWordRule(String wordRule, String wordReq, String action) {
 		String fmsStatus = FMSCommonUtil.getInstance().isContainsAndSetStatus(wordRule, wordReq, action);
+		System.out.println("Word rule status : " + fmsStatus);
 		return fmsStatus;
 	}
 

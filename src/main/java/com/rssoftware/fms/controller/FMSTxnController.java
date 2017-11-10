@@ -75,6 +75,7 @@ public class FMSTxnController {
 			} else if (e instanceof CacheException) {
 				FMSCommonUtil.getInstance().addError(fmsResponse, FMSErrorCode.CACHE_ERROR);
 			}
+			log.error(e.getMessage(), e);
 		} finally {
 			fmsResponse.setFmsResult(fmsOb);
 		}

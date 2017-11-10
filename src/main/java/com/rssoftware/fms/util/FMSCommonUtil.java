@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import com.rssoftware.fms.common.FMSError;
 import com.rssoftware.fms.common.FMSErrorCode;
 import com.rssoftware.fms.common.FMSErrorCodeMap;
+import com.rssoftware.fms.common.FMSRuleDetailsConstant;
 import com.rssoftware.fms.constant.FMSConstant;
 import com.rssoftware.fms.exception.InputParamNotFoundException;
 import com.rssoftware.fms.exception.RequestNotFoundException;
@@ -78,10 +79,10 @@ public class FMSCommonUtil {
 		String fmsStatus = null;
 		if (arg1 != null) {
 			if (arg1.equals(arg2)) {
-				if ("Review".equalsIgnoreCase(action)) {
-					fmsStatus = "R";
-				} else if ("Decline".equalsIgnoreCase(action)) {
-					fmsStatus = "D";
+				if (FMSRuleDetailsConstant.RULETYPE_ACCESSMODE_REVIEW.getRuleTypeValue().equalsIgnoreCase(action)) {
+					fmsStatus = FMSRuleDetailsConstant.RULETYPE_ACTION_R.getRuleTypeValue();
+				} else if (FMSRuleDetailsConstant.RULETYPE_ACCESSMODE_DECLINE.getRuleTypeValue().equalsIgnoreCase(action)) {
+					fmsStatus = FMSRuleDetailsConstant.RULETYPE_ACTION_D.getRuleTypeValue();
 				}
 			}
 		}
@@ -93,10 +94,10 @@ public class FMSCommonUtil {
 		String fmsStatus = null;
 		if (arg1 != null) {
 			if (arg1.contains(arg2)) {
-				if ("Review".equalsIgnoreCase(action)) {
-					fmsStatus = "R";
-				} else if ("Decline".equalsIgnoreCase(action)) {
-					fmsStatus = "D";
+				if (FMSRuleDetailsConstant.RULETYPE_ACCESSMODE_REVIEW.getRuleTypeValue().equalsIgnoreCase(action)) {
+					fmsStatus = FMSRuleDetailsConstant.RULETYPE_ACTION_R.getRuleTypeValue();
+				} else if (FMSRuleDetailsConstant.RULETYPE_ACCESSMODE_DECLINE.getRuleTypeValue().equalsIgnoreCase(action)) {
+					fmsStatus = FMSRuleDetailsConstant.RULETYPE_ACTION_D.getRuleTypeValue();
 				}
 			}
 		}
