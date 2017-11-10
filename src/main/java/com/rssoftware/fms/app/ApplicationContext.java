@@ -48,6 +48,7 @@ public class ApplicationContext implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		log.info("FMS has started!...");
+		log.info("In run()...");
 	}
+
 }

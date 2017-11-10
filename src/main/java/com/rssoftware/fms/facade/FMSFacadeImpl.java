@@ -30,11 +30,10 @@ public class FMSFacadeImpl implements FMSFacade {
 	@Override
 	public List<FMSRuleDetails> getPubRuleDetails() {
 
-		List<FMSRuleDetails> fmsPubStatusList = null;
-
-		// List<FMSRuleDetails> fmsPubStatusList = (List<FMSRuleDetails>) cacheRepository.findByKey("PUB-RULES");
+		List<FMSRuleDetails> fmsPubStatusList = (List<FMSRuleDetails>) cacheRepository.findByKey("PUB-RULES");
 
 		if (fmsPubStatusList == null) {
+			log.info("No data found in Cache, getting Public Rules from DB...");
 			fmsPubStatusList = fmsTxnPostgresDao.getPubRuleDetails();
 		}
 
@@ -44,11 +43,10 @@ public class FMSFacadeImpl implements FMSFacade {
 	@Override
 	public List<FMSRuleDetails> getPriRuleDetails() {
 
-		List<FMSRuleDetails> priRuleDetails = null;
-
-		// List<FMSRuleDetails> priRuleDetails = (List<FMSRuleDetails>) cacheRepository.findByKey("PRI-RULES");
+		List<FMSRuleDetails> priRuleDetails = (List<FMSRuleDetails>) cacheRepository.findByKey("PRI-RULES");
 
 		if (priRuleDetails == null) {
+			log.info("No data found in Cache, getting Private Rules from DB...");
 			priRuleDetails = fmsTxnPostgresDao.getPriRuleDetails();
 		}
 
@@ -70,7 +68,8 @@ public class FMSFacadeImpl implements FMSFacade {
 
 		List<FMSRuleType> allRuleTypeList = null;
 
-		// List<FMSRuleType> allRuleTypeList = cacheRepository.findByKey("RT-ALL");
+		// List<FMSRuleType> allRuleTypeList =
+		// cacheRepository.findByKey("RT-ALL");
 
 		if (allRuleTypeList == null) {
 			allRuleTypeList = fmsRuleTypePostgresDao.getAll();
