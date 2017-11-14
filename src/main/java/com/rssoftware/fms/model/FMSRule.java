@@ -16,11 +16,9 @@ public class FMSRule implements Serializable {
 
 	private String cardNo;
 
-	private String ip;
-
 	private String strAddr;
 
-	private String countryCode;
+	private String ip;
 
 	private String word;
 
@@ -30,9 +28,7 @@ public class FMSRule implements Serializable {
 
 	private BigDecimal maxAmtLimit;
 
-	private Timestamp startTxnOfLimit;
-
-	private Timestamp endTxnOfLimit;
+	private String timePeriod;
 
 	private String avsZip;
 
@@ -104,14 +100,6 @@ public class FMSRule implements Serializable {
 		this.strAddr = strAddr;
 	}
 
-	public String getCountryCode() {
-		return countryCode;
-	}
-
-	public void setCountryCode(String countryCode) {
-		this.countryCode = countryCode;
-	}
-
 	public String getWord() {
 		return word;
 	}
@@ -144,20 +132,12 @@ public class FMSRule implements Serializable {
 		this.maxAmtLimit = maxAmtLimit;
 	}
 
-	public Timestamp getStartTxnOfLimit() {
-		return startTxnOfLimit;
+	public String getTimePeriod() {
+		return timePeriod;
 	}
 
-	public void setStartTxnOfLimit(Timestamp startTxnOfLimit) {
-		this.startTxnOfLimit = startTxnOfLimit;
-	}
-
-	public Timestamp getEndTxnOfLimit() {
-		return endTxnOfLimit;
-	}
-
-	public void setEndTxnOfLimit(Timestamp endTxnOfLimit) {
-		this.endTxnOfLimit = endTxnOfLimit;
+	public void setTimePeriod(String timePeriod) {
+		this.timePeriod = timePeriod;
 	}
 
 	public String getAvsZip() {
@@ -235,9 +215,8 @@ public class FMSRule implements Serializable {
 	@Override
 	public String toString() {
 		return "FMSRule [ruleId=" + ruleId + ", ruleTypeId=" + ruleTypeId + ", email=" + email + ", cardNo=" + cardNo
-				+ ", ip=" + ip + ", strAddr=" + strAddr + ", countryCode=" + countryCode + ", word=" + word
-				+ ", cardLimit=" + cardLimit + ", ipLimit=" + ipLimit + ", maxAmtLimit=" + maxAmtLimit
-				+ ", startTxnOfLimit=" + startTxnOfLimit + ", endTxnOfLimit=" + endTxnOfLimit + ", avsZip=" + avsZip
+				+ ", strAddr=" + strAddr + ", ip=" + ip + ", word=" + word + ", cardLimit=" + cardLimit + ", ipLimit="
+				+ ipLimit + ", maxAmtLimit=" + maxAmtLimit + ", timePeriod=" + timePeriod + ", avsZip=" + avsZip
 				+ ", avsStrAddr=" + avsStrAddr + ", avsCity=" + avsCity + ", avsState=" + avsState + ", avsResult="
 				+ avsResult + ", geoIp=" + geoIp + ", deviceId=" + deviceId + ", createdBy=" + createdBy
 				+ ", creationTs=" + creationTs + "]";
