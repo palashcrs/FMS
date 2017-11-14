@@ -20,6 +20,30 @@ public class FMSTransaction implements Serializable {
 
 	private String fmsTxnStatus;
 
+	private String email;
+
+	private String cardNo;
+
+	private String ip;
+
+	private String strAddr;
+
+	private String countryCode;
+
+	private String custName;
+
+	private String avsZip;
+
+	private String avsStrAddr;
+
+	private String avsCity;
+
+	private String avsState;
+
+	private String geoIp;
+
+	private String deviceId;
+
 	private String createdBy;
 
 	private Timestamp creationTs;
@@ -80,6 +104,102 @@ public class FMSTransaction implements Serializable {
 		this.fmsTxnStatus = fmsTxnStatus;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCardNo() {
+		return cardNo;
+	}
+
+	public void setCardNo(String cardNo) {
+		this.cardNo = cardNo;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
+	public String getStrAddr() {
+		return strAddr;
+	}
+
+	public void setStrAddr(String strAddr) {
+		this.strAddr = strAddr;
+	}
+
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
+
+	public String getCustName() {
+		return custName;
+	}
+
+	public void setCustName(String custName) {
+		this.custName = custName;
+	}
+
+	public String getAvsZip() {
+		return avsZip;
+	}
+
+	public void setAvsZip(String avsZip) {
+		this.avsZip = avsZip;
+	}
+
+	public String getAvsStrAddr() {
+		return avsStrAddr;
+	}
+
+	public void setAvsStrAddr(String avsStrAddr) {
+		this.avsStrAddr = avsStrAddr;
+	}
+
+	public String getAvsCity() {
+		return avsCity;
+	}
+
+	public void setAvsCity(String avsCity) {
+		this.avsCity = avsCity;
+	}
+
+	public String getAvsState() {
+		return avsState;
+	}
+
+	public void setAvsState(String avsState) {
+		this.avsState = avsState;
+	}
+
+	public String getGeoIp() {
+		return geoIp;
+	}
+
+	public void setGeoIp(String geoIp) {
+		this.geoIp = geoIp;
+	}
+
+	public String getDeviceId() {
+		return deviceId;
+	}
+
+	public void setDeviceId(String deviceId) {
+		this.deviceId = deviceId;
+	}
+
 	public String getCreatedBy() {
 		return createdBy;
 	}
@@ -116,8 +236,11 @@ public class FMSTransaction implements Serializable {
 	public String toString() {
 		return "FMSTransaction [fmsTxnId=" + fmsTxnId + ", edgePayTxnId=" + edgePayTxnId + ", txnType=" + txnType
 				+ ", txnTotalAmt=" + txnTotalAmt + ", edgePayTxnStatus=" + edgePayTxnStatus + ", fmsTxnStatus="
-				+ fmsTxnStatus + ", createdBy=" + createdBy + ", creationTs=" + creationTs + ", updatedBy=" + updatedBy
-				+ ", updateTs=" + updateTs + "]";
+				+ fmsTxnStatus + ", email=" + email + ", cardNo=" + cardNo + ", ip=" + ip + ", strAddr=" + strAddr
+				+ ", countryCode=" + countryCode + ", custName=" + custName + ", avsZip=" + avsZip + ", avsStrAddr="
+				+ avsStrAddr + ", avsCity=" + avsCity + ", avsState=" + avsState + ", geoIp=" + geoIp + ", deviceId="
+				+ deviceId + ", createdBy=" + createdBy + ", creationTs=" + creationTs + ", updatedBy=" + updatedBy
+				+ ", updateTs=" + updateTs + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
 	}
 
 }

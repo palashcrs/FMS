@@ -3,6 +3,7 @@ package com.rssoftware.fms.dao.pgsql.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.rssoftware.fms.model.FMSRule;
 import com.rssoftware.fms.model.FMSRuleDetails;
 import com.rssoftware.fms.vo.FMSRequest;
 
@@ -96,9 +97,12 @@ public class FMSMockData {
 	public FMSRequest getMockTransaction() {
 		FMSRequest fmsRequest = new FMSRequest();
 		fmsRequest.setMerchantId("MID55893266");
-		fmsRequest.setEmail("pqr@gmail.com");
-		fmsRequest.setCardNo("442256342313");
-		fmsRequest.setWord("aaa");
+		List<FMSRule> fmsRules = new ArrayList<>();
+		FMSRule fmsRule = new FMSRule();
+		fmsRule.setEmail("pqr@gmail.com");
+		fmsRule.setCardNo("442256342313");
+		fmsRule.setWord("aaa");
+		fmsRules.set(0, fmsRule);
 
 		return fmsRequest;
 	}

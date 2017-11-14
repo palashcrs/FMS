@@ -29,12 +29,16 @@ public class FMSRuleConfiguration {
 		List<String> fmsStatus = new ArrayList<>();
 		String emailReq = null;
 		String cardNoReq = null;
-		String wordReq = null;
+		String custName = null;
 
 		if (fmsRequest != null) {
-			emailReq = fmsRequest.getEmail();
-			cardNoReq = fmsRequest.getCardNo();
-			wordReq = fmsRequest.getWord();
+			if (fmsRequest.getFmsTransactions() != null) {
+				if (fmsRequest.getFmsTransactions().get(0) != null) {
+					emailReq = fmsRequest.getFmsTransactions().get(0).getEmail();
+					cardNoReq = fmsRequest.getFmsTransactions().get(0).getCardNo();
+					custName = fmsRequest.getFmsTransactions().get(0).getCustName();
+				}
+			}
 		}
 
 		if (ruleDetails != null) {
@@ -54,8 +58,8 @@ public class FMSRuleConfiguration {
 					}
 					// ******************Trigger RuleType = WORD**********//
 					if (FMSRuleDetailsConstant.RULETYPE_WORD.getRuleTypeValue().equalsIgnoreCase(rd.getRuleType())) {
-						if (wordReq != null || "".equals(wordReq)) {
-							fmsStatus.add(triggerWordRule(rd.getWord(), wordReq, rd.getAction()));
+						if (custName != null || "".equals(custName)) {
+							fmsStatus.add(triggerWordRule(rd.getWord(), custName, rd.getAction()));
 						}
 					}
 				}
@@ -77,8 +81,8 @@ public class FMSRuleConfiguration {
 		return fmsStatus;
 	}
 
-	private static String triggerWordRule(String wordRule, String wordReq, String action) {
-		String fmsStatus = FMSCommonUtil.getInstance().isContainsAndSetStatus(wordRule, wordReq, action);
+	private static String triggerWordRule(String wordRule, String custName, String action) {
+		String fmsStatus = FMSCommonUtil.getInstance().isContainsAndSetStatus(wordRule, custName, action);
 		System.out.println("Word rule status : " + fmsStatus);
 		return fmsStatus;
 	}
