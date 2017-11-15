@@ -1,6 +1,8 @@
 package com.rssoftware.fms.util;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class FMSUtil {
@@ -22,6 +24,10 @@ public class FMSUtil {
 			}
 		}
 		return Boolean.TRUE;
+	}
+
+	public Timestamp currentTimestamp() {
+		return new Timestamp(new Date().getTime());
 	}
 
 	public <T> List<T> mergeLists(List<T> list, List<T> list2) {

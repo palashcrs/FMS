@@ -14,7 +14,7 @@ import com.rssoftware.fms.common.FMSErrorCode;
 import com.rssoftware.fms.constant.FMSConstant;
 import com.rssoftware.fms.constant.FMSResponseStatus;
 import com.rssoftware.fms.exception.CacheException;
-import com.rssoftware.fms.exception.DuplicateRecordException;
+import com.rssoftware.fms.exception.DBException;
 import com.rssoftware.fms.exception.InputParamNotFoundException;
 import com.rssoftware.fms.exception.RequestNotFoundException;
 import com.rssoftware.fms.model.FMSTransaction;
@@ -46,17 +46,14 @@ public class FMSTxnController {
 		log.info("*********/fmstxn/fraudcalc | FMSRequest : " + fmsRequest);
 		FMSResponse fmsResponse = new FMSResponse();
 		Object fmsOb = null;
-		String fmsTxnStatus = null;
+		FMSTransaction fmsTxn = null;
 
 		try {
 			FMSCommonUtil.getInstance().validateInput(fmsRequest, FMSConstant.TXN_FRAUD_CALC_FLAG);
 
-			fmsTxnStatus = fmsTransactionService.calculateFraud(fmsRequest);
-			log.info("FMSTxnStatus : " + fmsTxnStatus);
-
-			FMSTransaction fmsTransaction = fmsRequest.getFmsTransactions().get(0);
-			fmsTransaction.setFmsTxnStatus(fmsTxnStatus);
-			fmsOb = fmsTransaction;
+			fmsTxn = fmsTransactionService.calculateFraudAndSaveTxn(fmsRequest);
+			log.info("FMSTxn : " + fmsTxn);
+			fmsOb = fmsTxn;
 
 			fmsResponse.setFmsResponseCode(FMSResponseStatus.SUCCESS.toString());
 
@@ -70,8 +67,8 @@ public class FMSTxnController {
 				FMSCommonUtil.getInstance().addError(fmsResponse, FMSErrorCode.TIMEOUT_ERROR);
 			} else if (e instanceof ExecutionException) {
 				FMSCommonUtil.getInstance().addError(fmsResponse, FMSErrorCode.EXECUTE_ERROR);
-			} else if (e instanceof DuplicateRecordException) {
-				FMSCommonUtil.getInstance().addError(fmsResponse, FMSErrorCode.DUPLICATE_RECORD);
+			} else if (e instanceof DBException) {
+				FMSCommonUtil.getInstance().addError(fmsResponse, FMSErrorCode.DB_ERROR);
 			} else if (e instanceof CacheException) {
 				FMSCommonUtil.getInstance().addError(fmsResponse, FMSErrorCode.CACHE_ERROR);
 			}

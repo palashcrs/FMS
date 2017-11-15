@@ -1,5 +1,6 @@
 package com.rssoftware.fms.service.impl;
 
+import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -18,8 +19,10 @@ import com.rssoftware.fms.common.FMSRuleConfiguration;
 import com.rssoftware.fms.common.FMSRuleDetailsConstant;
 import com.rssoftware.fms.constant.FMSTxnStatusConstant;
 import com.rssoftware.fms.exception.CacheException;
+import com.rssoftware.fms.exception.DBException;
 import com.rssoftware.fms.facade.FMSFacade;
 import com.rssoftware.fms.model.FMSRuleDetails;
+import com.rssoftware.fms.model.FMSTransaction;
 import com.rssoftware.fms.service.FMSTransactionService;
 import com.rssoftware.fms.util.FMSUtil;
 import com.rssoftware.fms.vo.FMSRequest;
@@ -32,13 +35,15 @@ public class FMSTransactionServiceImpl implements FMSTransactionService {
 	@Autowired
 	private FMSFacade fmsFacade;
 
-	@Transactional(rollbackFor = { InterruptedException.class, ExecutionException.class, CacheException.class })
+	@Transactional(rollbackFor = { DBException.class, InterruptedException.class, ExecutionException.class, CacheException.class })
 	@Override
-	public String calculateFraud(FMSRequest fmsRequest) throws InterruptedException, ExecutionException {
+	public FMSTransaction calculateFraudAndSaveTxn(FMSRequest fmsRequest) throws Exception {
+		FMSTransaction fmsTxn = null;
 		String fmsTxnStatus = null;
 		List<String> fmsPubStatusList = null;
 		List<String> fmsPriStatusList = null;
 		List<String> fmsMergedStatusList = null;
+		List<Object> facadeResponse = null;
 		ExecutorService execotorService = Executors.newFixedThreadPool(2);
 
 		// ******Fetch all Public-Rules and trigger them in different thread:
@@ -88,9 +93,25 @@ public class FMSTransactionServiceImpl implements FMSTransactionService {
 			log.info("FMSMergedStatusList : " + fmsMergedStatusList);
 
 			fmsTxnStatus = calculateFMSTxnStatus(fmsMergedStatusList);
+
+			if (fmsRequest != null) {
+				if (fmsRequest.getFmsTransactions() != null) {
+					fmsTxn = fmsRequest.getFmsTransactions().get(0);
+					if (fmsTxn != null) {
+						fmsTxn.setFmsTxnStatus(fmsTxnStatus);
+						facadeResponse = fmsFacade.saveOrUpdateFMSTxn(fmsTxn);
+					}
+				}
+			}
+			
+			if(facadeResponse != null){
+				fmsTxn.setFmsTxnId((Integer) facadeResponse.get(0));
+				fmsTxn.setCreationTs((Timestamp) facadeResponse.get(1));
+				fmsTxn.setUpdateTs((Timestamp) facadeResponse.get(2));
+			}
 		}
 
-		return fmsTxnStatus;
+		return fmsTxn;
 	}
 
 	private String calculateFMSTxnStatus(List<String> mergedList) {

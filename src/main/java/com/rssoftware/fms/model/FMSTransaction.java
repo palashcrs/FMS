@@ -28,8 +28,6 @@ public class FMSTransaction implements Serializable {
 
 	private String strAddr;
 
-	private String countryCode;
-
 	private String custName;
 
 	private String avsZip;
@@ -136,14 +134,6 @@ public class FMSTransaction implements Serializable {
 		this.strAddr = strAddr;
 	}
 
-	public String getCountryCode() {
-		return countryCode;
-	}
-
-	public void setCountryCode(String countryCode) {
-		this.countryCode = countryCode;
-	}
-
 	public String getCustName() {
 		return custName;
 	}
@@ -237,10 +227,10 @@ public class FMSTransaction implements Serializable {
 		return "FMSTransaction [fmsTxnId=" + fmsTxnId + ", edgePayTxnId=" + edgePayTxnId + ", txnType=" + txnType
 				+ ", txnTotalAmt=" + txnTotalAmt + ", edgePayTxnStatus=" + edgePayTxnStatus + ", fmsTxnStatus="
 				+ fmsTxnStatus + ", email=" + email + ", cardNo=" + cardNo + ", ip=" + ip + ", strAddr=" + strAddr
-				+ ", countryCode=" + countryCode + ", custName=" + custName + ", avsZip=" + avsZip + ", avsStrAddr="
-				+ avsStrAddr + ", avsCity=" + avsCity + ", avsState=" + avsState + ", geoIp=" + geoIp + ", deviceId="
-				+ deviceId + ", createdBy=" + createdBy + ", creationTs=" + creationTs + ", updatedBy=" + updatedBy
-				+ ", updateTs=" + updateTs + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
+				+ ", custName=" + custName + ", avsZip=" + avsZip + ", avsStrAddr=" + avsStrAddr + ", avsCity="
+				+ avsCity + ", avsState=" + avsState + ", geoIp=" + geoIp + ", deviceId=" + deviceId + ", createdBy="
+				+ createdBy + ", creationTs=" + creationTs + ", updatedBy=" + updatedBy + ", updateTs=" + updateTs
+				+ "]";
 	}
 
 }

@@ -7,10 +7,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.rssoftware.fms.dao.FMSRulePostgresDao;
 import com.rssoftware.fms.dao.FMSRuleTypePostgresDao;
 import com.rssoftware.fms.dao.FMSTxnPostgresDao;
 import com.rssoftware.fms.model.FMSRuleDetails;
 import com.rssoftware.fms.model.FMSRuleType;
+import com.rssoftware.fms.model.FMSTransaction;
 import com.rssoftware.fms.repository.CacheRepository;
 
 @Component
@@ -20,6 +22,9 @@ public class FMSFacadeImpl implements FMSFacade {
 
 	@Autowired
 	private FMSRuleTypePostgresDao fmsRuleTypePostgresDao;
+
+	@Autowired
+	private FMSRulePostgresDao fmsRulePostgresDao;
 
 	@Autowired
 	private FMSTxnPostgresDao fmsTxnPostgresDao;
@@ -34,7 +39,7 @@ public class FMSFacadeImpl implements FMSFacade {
 
 		if (fmsPubStatusList == null) {
 			log.info("No data found in Cache, getting Public Rules from DB...");
-			fmsPubStatusList = fmsTxnPostgresDao.getPubRuleDetails();
+			fmsPubStatusList = fmsRulePostgresDao.getPubRuleDetails();
 		}
 
 		return fmsPubStatusList;
@@ -47,7 +52,7 @@ public class FMSFacadeImpl implements FMSFacade {
 
 		if (priRuleDetails == null) {
 			log.info("No data found in Cache, getting Private Rules from DB...");
-			priRuleDetails = fmsTxnPostgresDao.getPriRuleDetails();
+			priRuleDetails = fmsRulePostgresDao.getPriRuleDetails();
 		}
 
 		return priRuleDetails;
@@ -68,13 +73,22 @@ public class FMSFacadeImpl implements FMSFacade {
 
 		List<FMSRuleType> allRuleTypeList = null;
 
-		// List<FMSRuleType> allRuleTypeList =
-		// cacheRepository.findByKey("RT-ALL");
+		// List<FMSRuleType> allRuleTypeList = cacheRepository.findByKey("RT-ALL");
 
 		if (allRuleTypeList == null) {
 			allRuleTypeList = fmsRuleTypePostgresDao.getAll();
 		}
 
 		return allRuleTypeList;
+	}
+
+	@Override
+	public List<Object> saveOrUpdateFMSTxn(FMSTransaction fmsTransaction) throws Exception {
+
+		List<Object> response = fmsTxnPostgresDao.upsert(fmsTransaction);
+
+		// Update Txn-list object in Redis...
+
+		return response;
 	}
 }

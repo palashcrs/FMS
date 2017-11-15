@@ -42,12 +42,25 @@ drop table if exists fms_schema_1.EDGEPAY_TRANSACTION cascade;
 create table fms_schema_1.EDGEPAY_TRANSACTION
 (    
 EDGEPAY_FMS_TXN_ID				serial primary key not null, 
-EDGEPAY_TXN_ID					integer,
+EDGEPAY_TXN_ID					character varying(100),
 EDGEPAY_TXN_TYPE				character varying(100),
 EDGEPAY_TXN_TOTAL_AMT			decimal,
 EDGEPAY_TXN_STATUS				character varying(100),
+EDGEPAY_FMS_TXN_STATUS			character varying(100),
+EDGEPAY_TXN_EMAIL				character varying(100),
+EDGEPAY_TXN_CARD_NO            	character varying(100),
+EDGEPAY_TXN_IP                	character varying(100),         
+EDGEPAY_TXN_STR_ADDR          	character varying(100),	
+EDGEPAY_TXN_CUSTNAME          	character varying(100),	
+EDGEPAY_TXN_AVS_ZIP             character varying(100),                                                           
+EDGEPAY_TXN_AVS_STR_ADDR        character varying(100),           
+EDGEPAY_TXN_AVS_CITY            character varying(100),                                                           
+EDGEPAY_TXN_AVS_STATE           character varying(100),
+EDGEPAY_TXN_GEOLOC_IP           character varying(100), 
+EDGEPAY_TXN_DEVICE_ID           character varying(100),
 EDGEPAY_TXN_CREATED_BY			character varying(100),
 EDGEPAY_TXN_CREATION_TS			timestamp without time zone,
 EDGEPAY_TXN_UPDATED_BY			character varying(100),
-EDGEPAY_TXN_UPDATED_TS			timestamp without time zone
+EDGEPAY_TXN_UPDATED_TS			timestamp without time zone,
+UNIQUE (EDGEPAY_TXN_ID)
 );

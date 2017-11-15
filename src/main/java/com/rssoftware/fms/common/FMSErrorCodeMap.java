@@ -14,6 +14,7 @@ public class FMSErrorCodeMap {
 		fmsErrCodeMap.put("ERR00004", "Cache db errors!");
 		fmsErrCodeMap.put("ERR00005", "Timed Out!");
 		fmsErrCodeMap.put("ERR00006", "Could not process request!");
+		fmsErrCodeMap.put("ERR00007", "Database error! Please try again");
 	}
 
 	public static String getMsg(String key) {
