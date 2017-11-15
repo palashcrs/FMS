@@ -66,7 +66,8 @@ public class FMSCommonUtil {
 				}
 				if (fmsRequest.getFmsTransactions() != null) {
 					if (fmsRequest.getFmsTransactions().get(0) != null) {
-						if (fmsRequest.getFmsTransactions().get(0).getEdgePayTxnId() == null) {
+						if (fmsRequest.getFmsTransactions().get(0).getEdgePayTxnId() == null
+								|| "".equals(fmsRequest.getFmsTransactions().get(0).getEdgePayTxnId())) {
 							throw new InputParamNotFoundException();
 						}
 					}
@@ -81,7 +82,8 @@ public class FMSCommonUtil {
 			if (arg1.equals(arg2)) {
 				if (FMSRuleDetailsConstant.RULETYPE_ACCESSMODE_REVIEW.getRuleTypeValue().equalsIgnoreCase(action)) {
 					fmsStatus = FMSRuleDetailsConstant.RULETYPE_ACTION_R.getRuleTypeValue();
-				} else if (FMSRuleDetailsConstant.RULETYPE_ACCESSMODE_DECLINE.getRuleTypeValue().equalsIgnoreCase(action)) {
+				} else if (FMSRuleDetailsConstant.RULETYPE_ACCESSMODE_DECLINE.getRuleTypeValue()
+						.equalsIgnoreCase(action)) {
 					fmsStatus = FMSRuleDetailsConstant.RULETYPE_ACTION_D.getRuleTypeValue();
 				}
 			}
@@ -96,7 +98,8 @@ public class FMSCommonUtil {
 			if (arg1.contains(arg2)) {
 				if (FMSRuleDetailsConstant.RULETYPE_ACCESSMODE_REVIEW.getRuleTypeValue().equalsIgnoreCase(action)) {
 					fmsStatus = FMSRuleDetailsConstant.RULETYPE_ACTION_R.getRuleTypeValue();
-				} else if (FMSRuleDetailsConstant.RULETYPE_ACCESSMODE_DECLINE.getRuleTypeValue().equalsIgnoreCase(action)) {
+				} else if (FMSRuleDetailsConstant.RULETYPE_ACCESSMODE_DECLINE.getRuleTypeValue()
+						.equalsIgnoreCase(action)) {
 					fmsStatus = FMSRuleDetailsConstant.RULETYPE_ACTION_D.getRuleTypeValue();
 				}
 			}

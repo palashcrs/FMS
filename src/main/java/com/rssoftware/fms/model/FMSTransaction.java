@@ -42,6 +42,8 @@ public class FMSTransaction implements Serializable {
 
 	private String deviceId;
 
+	private String notes;
+
 	private String createdBy;
 
 	private Timestamp creationTs;
@@ -190,6 +192,14 @@ public class FMSTransaction implements Serializable {
 		this.deviceId = deviceId;
 	}
 
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
 	public String getCreatedBy() {
 		return createdBy;
 	}
@@ -228,9 +238,9 @@ public class FMSTransaction implements Serializable {
 				+ ", txnTotalAmt=" + txnTotalAmt + ", edgePayTxnStatus=" + edgePayTxnStatus + ", fmsTxnStatus="
 				+ fmsTxnStatus + ", email=" + email + ", cardNo=" + cardNo + ", ip=" + ip + ", strAddr=" + strAddr
 				+ ", custName=" + custName + ", avsZip=" + avsZip + ", avsStrAddr=" + avsStrAddr + ", avsCity="
-				+ avsCity + ", avsState=" + avsState + ", geoIp=" + geoIp + ", deviceId=" + deviceId + ", createdBy="
-				+ createdBy + ", creationTs=" + creationTs + ", updatedBy=" + updatedBy + ", updateTs=" + updateTs
-				+ "]";
+				+ avsCity + ", avsState=" + avsState + ", geoIp=" + geoIp + ", deviceId=" + deviceId + ", notes="
+				+ notes + ", createdBy=" + createdBy + ", creationTs=" + creationTs + ", updatedBy=" + updatedBy
+				+ ", updateTs=" + updateTs + "]";
 	}
 
 }

@@ -8,7 +8,7 @@ public class FMSErrorCodeMap {
 
 	static {
 		fmsErrCodeMap.put("ERR00000", "Request is not found!");
-		fmsErrCodeMap.put("ERR00001", "Input parameters not found!");
+		fmsErrCodeMap.put("ERR00001", "Required Input parameters not found!");
 		fmsErrCodeMap.put("ERR00002", "Record fetch error!");
 		fmsErrCodeMap.put("ERR00003", "Record exists!");
 		fmsErrCodeMap.put("ERR00004", "Cache db errors!");
