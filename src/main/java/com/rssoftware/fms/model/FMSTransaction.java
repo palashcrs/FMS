@@ -8,7 +8,7 @@ public class FMSTransaction implements Serializable {
 
 	private final static long serialVersionUID = 1L;
 
-	private Integer fmsTxnId;
+	private String fmsTxnId;
 
 	private String edgePayTxnId;
 
@@ -56,11 +56,11 @@ public class FMSTransaction implements Serializable {
 
 	}
 
-	public Integer getFmsTxnId() {
+	public String getFmsTxnId() {
 		return fmsTxnId;
 	}
 
-	public void setFmsTxnId(Integer fmsTxnId) {
+	public void setFmsTxnId(String fmsTxnId) {
 		this.fmsTxnId = fmsTxnId;
 	}
 

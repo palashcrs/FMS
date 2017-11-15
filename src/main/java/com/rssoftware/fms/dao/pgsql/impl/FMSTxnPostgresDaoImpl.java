@@ -45,7 +45,7 @@ public class FMSTxnPostgresDaoImpl implements FMSTxnPostgresDao {
 		}
 
 		List<Object> responseList = null;
-		Integer fmsTxnId = null;
+		String fmsTxnId = null;
 		Timestamp creationTSRes = null;
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		Timestamp creationTS = FMSUtil.getInstance().currentTimestamp();
@@ -75,7 +75,7 @@ public class FMSTxnPostgresDaoImpl implements FMSTxnPostgresDao {
 		try {
 			jdbcNTemplate.update(UPSERT_SQL, paramSrc, keyHolder);
 			Map<String, Object> allReturnedKeys = keyHolder.getKeys();
-			fmsTxnId = (Integer) allReturnedKeys.get("edgepay_fms_txn_id");
+			fmsTxnId = String.valueOf(allReturnedKeys.get("edgepay_fms_txn_id"));
 			creationTSRes = (Timestamp) allReturnedKeys.get("EDGEPAY_TXN_CREATION_TS");
 			responseList = new ArrayList<Object>();
 			responseList.add(fmsTxnId);

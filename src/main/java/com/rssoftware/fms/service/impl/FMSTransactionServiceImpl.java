@@ -24,6 +24,7 @@ import com.rssoftware.fms.facade.FMSFacade;
 import com.rssoftware.fms.model.FMSRuleDetails;
 import com.rssoftware.fms.model.FMSTransaction;
 import com.rssoftware.fms.service.FMSTransactionService;
+import com.rssoftware.fms.util.FMSCommonUtil;
 import com.rssoftware.fms.util.FMSUtil;
 import com.rssoftware.fms.vo.FMSRequest;
 
@@ -35,7 +36,8 @@ public class FMSTransactionServiceImpl implements FMSTransactionService {
 	@Autowired
 	private FMSFacade fmsFacade;
 
-	@Transactional(rollbackFor = { DBException.class, InterruptedException.class, ExecutionException.class, CacheException.class })
+	@Transactional(rollbackFor = { DBException.class, InterruptedException.class, ExecutionException.class,
+			CacheException.class })
 	@Override
 	public FMSTransaction calculateFraudAndSaveTxn(FMSRequest fmsRequest) throws Exception {
 		FMSTransaction fmsTxn = null;
@@ -103,9 +105,9 @@ public class FMSTransactionServiceImpl implements FMSTransactionService {
 					}
 				}
 			}
-			
-			if(facadeResponse != null){
-				fmsTxn.setFmsTxnId((Integer) facadeResponse.get(0));
+
+			if (facadeResponse != null) {
+				fmsTxn.setFmsTxnId(FMSCommonUtil.getInstance().generateFMSTxnId((String) facadeResponse.get(0)));
 				fmsTxn.setCreationTs((Timestamp) facadeResponse.get(1));
 				fmsTxn.setUpdateTs((Timestamp) facadeResponse.get(2));
 			}
@@ -122,7 +124,8 @@ public class FMSTransactionServiceImpl implements FMSTransactionService {
 				fmsTxnStatus = FMSTxnStatusConstant.DECLINE.toString();
 			} else {
 				int mergedListSize = mergedList.size();
-				int occurrencesOfReview = Collections.frequency(mergedList, FMSRuleDetailsConstant.RULETYPE_ACTION_R.getRuleTypeValue());
+				int occurrencesOfReview = Collections.frequency(mergedList,
+						FMSRuleDetailsConstant.RULETYPE_ACTION_R.getRuleTypeValue());
 				int occurrencesOfOthers = mergedListSize - occurrencesOfReview;
 				if (occurrencesOfReview > occurrencesOfOthers) {
 					fmsTxnStatus = FMSTxnStatusConstant.REVIEW.toString();

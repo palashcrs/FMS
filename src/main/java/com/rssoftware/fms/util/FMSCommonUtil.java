@@ -76,6 +76,15 @@ public class FMSCommonUtil {
 		}
 	}
 
+	public String generateFMSTxnId(String id) {
+		String fmsTxnId = "NA";
+		if (fmsTxnId != null || !("".equals(fmsTxnId))) {
+			fmsTxnId = "FMSTXN" + id;
+		}
+
+		return fmsTxnId;
+	}
+
 	public String isEqualAndSetStatus(String arg1, String arg2, String action) {
 		String fmsStatus = null;
 		if (arg1 != null) {
