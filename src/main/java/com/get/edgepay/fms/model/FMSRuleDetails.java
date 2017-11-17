@@ -43,16 +43,15 @@ public class FMSRuleDetails extends FMSRule implements Serializable {
 	@Override
 	public String toString() {
 		return "FMSRuleDetails [ruleType=" + ruleType + ", accessMode=" + accessMode + ", action=" + action
-				+ ", getRuleType()=" + getRuleType() + ", getAccessMode()=" + getAccessMode() + ", getAction()="
-				+ getAction() + ", getRuleId()=" + getRuleId() + ", getRuleTypeId()=" + getRuleTypeId()
-				+ ", getEmail()=" + getEmail() + ", getCardNo()=" + getCardNo() + ", getIp()=" + getIp()
-				+ ", getStrAddr()=" + getStrAddr() + ", getWord()=" + getWord() + ", getCardLimit()=" + getCardLimit()
-				+ ", getIpLimit()=" + getIpLimit() + ", getMaxAmtLimit()=" + getMaxAmtLimit() + ", getTimePeriod()="
-				+ getTimePeriod() + ", getAvsZip()=" + getAvsZip() + ", getAvsStrAddr()=" + getAvsStrAddr()
-				+ ", getAvsCity()=" + getAvsCity() + ", getAvsState()=" + getAvsState() + ", getAvsResult()="
-				+ getAvsResult() + ", getGeoIp()=" + getGeoIp() + ", getDeviceId()=" + getDeviceId()
-				+ ", getCreatedBy()=" + getCreatedBy() + ", getCreationTs()=" + getCreationTs() + ", toString()="
-				+ super.toString() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
+				+ ", getRuleId()=" + getRuleId() + ", getRuleTypeId()=" + getRuleTypeId() + ", getEmail()=" + getEmail()
+				+ ", getCardNo()=" + getCardNo() + ", getIp()=" + getIp() + ", getStrAddr()=" + getStrAddr()
+				+ ", getWord()=" + getWord() + ", getCardLimit()=" + getCardLimit() + ", getIpLimit()=" + getIpLimit()
+				+ ", getMaxAmtLimit()=" + getMaxAmtLimit() + ", getTimePeriod()=" + getTimePeriod() + ", getAvsZip()="
+				+ getAvsZip() + ", getAvsStrAddr()=" + getAvsStrAddr() + ", getAvsCity()=" + getAvsCity()
+				+ ", getAvsState()=" + getAvsState() + ", getAvsResult()=" + getAvsResult() + ", getGeoIp()="
+				+ getGeoIp() + ", getDeviceId()=" + getDeviceId() + ", getCreatedBy()=" + getCreatedBy()
+				+ ", getCreationTs()=" + getCreationTs() + ", toString()=" + super.toString() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + "]";
 	}
 
 }

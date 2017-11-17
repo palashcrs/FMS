@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.get.edgepay.fms.common.FMSRuleConfiguration;
 import com.get.edgepay.fms.common.FMSRuleDetailsConstant;
 import com.get.edgepay.fms.constant.FMSTxnStatusConstant;
+import com.get.edgepay.fms.dto.FMSRequest;
 import com.get.edgepay.fms.exception.CacheException;
 import com.get.edgepay.fms.exception.DBException;
 import com.get.edgepay.fms.facade.FMSFacade;
@@ -26,7 +27,6 @@ import com.get.edgepay.fms.model.FMSTransaction;
 import com.get.edgepay.fms.service.FMSTransactionService;
 import com.get.edgepay.fms.util.FMSCommonUtil;
 import com.get.edgepay.fms.util.FMSUtil;
-import com.get.edgepay.fms.vo.FMSRequest;
 
 @Service
 public class FMSTransactionServiceImpl implements FMSTransactionService {
@@ -36,8 +36,7 @@ public class FMSTransactionServiceImpl implements FMSTransactionService {
 	@Autowired
 	private FMSFacade fmsFacade;
 
-	@Transactional(rollbackFor = { DBException.class, InterruptedException.class, ExecutionException.class,
-			CacheException.class })
+	@Transactional(rollbackFor = { DBException.class, InterruptedException.class, ExecutionException.class, CacheException.class })
 	@Override
 	public FMSTransaction calculateFraudAndSaveTxn(FMSRequest fmsRequest) throws Exception {
 		FMSTransaction fmsTxn = null;

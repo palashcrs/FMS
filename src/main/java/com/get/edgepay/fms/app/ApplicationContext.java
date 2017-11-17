@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.get.edgepay.fms.common.Application;
 
-@SpringBootApplication(scanBasePackages = "com.rssoftware.fms.*")
+@SpringBootApplication(scanBasePackages = "com.get.edgepay.fms.*")
 public class ApplicationContext implements CommandLineRunner {
 
 	private static final Logger log = LoggerFactory.getLogger(ApplicationContext.class);

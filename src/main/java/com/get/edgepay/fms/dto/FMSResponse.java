@@ -1,4 +1,4 @@
-package com.get.edgepay.fms.vo;
+package com.get.edgepay.fms.dto;
 
 import java.io.Serializable;
 

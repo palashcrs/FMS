@@ -10,9 +10,9 @@ import java.util.concurrent.Future;
 
 import com.get.edgepay.fms.common.FMSRuleConfiguration;
 import com.get.edgepay.fms.dao.pgsql.impl.FMSMockData;
+import com.get.edgepay.fms.dto.FMSRequest;
 import com.get.edgepay.fms.model.FMSRuleDetails;
 import com.get.edgepay.fms.util.FMSUtil;
-import com.get.edgepay.fms.vo.FMSRequest;
 
 public class FMSTest {
 

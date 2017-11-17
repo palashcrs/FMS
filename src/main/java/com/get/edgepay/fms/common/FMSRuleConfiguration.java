@@ -6,9 +6,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.get.edgepay.fms.dto.FMSRequest;
 import com.get.edgepay.fms.model.FMSRuleDetails;
 import com.get.edgepay.fms.util.FMSCommonUtil;
-import com.get.edgepay.fms.vo.FMSRequest;
 
 /**
  * @author PalashC

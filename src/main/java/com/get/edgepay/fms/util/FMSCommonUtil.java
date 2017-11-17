@@ -8,11 +8,11 @@ import com.get.edgepay.fms.common.FMSErrorCode;
 import com.get.edgepay.fms.common.FMSErrorCodeMap;
 import com.get.edgepay.fms.common.FMSRuleDetailsConstant;
 import com.get.edgepay.fms.constant.FMSConstant;
+import com.get.edgepay.fms.dto.FMSRequest;
+import com.get.edgepay.fms.dto.FMSResponse;
 import com.get.edgepay.fms.exception.InputParamNotFoundException;
 import com.get.edgepay.fms.exception.RequestNotFoundException;
 import com.get.edgepay.fms.model.FMSRuleType;
-import com.get.edgepay.fms.vo.FMSRequest;
-import com.get.edgepay.fms.vo.FMSResponse;
 
 public class FMSCommonUtil {
 

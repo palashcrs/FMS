@@ -85,8 +85,6 @@ public class FMSRuleTypePostgresDaoImpl implements FMSRuleTypePostgresDao {
 			throw new RecordFetchException();
 		}
 
-		log.info("allRuleTypeList in dao = " + allRuleTypeList);
-
 		return allRuleTypeList;
 	}
 }

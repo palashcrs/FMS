@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.get.edgepay.fms.common.FMSErrorCode;
 import com.get.edgepay.fms.constant.FMSConstant;
 import com.get.edgepay.fms.constant.FMSResponseStatus;
+import com.get.edgepay.fms.dto.FMSRequest;
+import com.get.edgepay.fms.dto.FMSResponse;
 import com.get.edgepay.fms.exception.CacheException;
 import com.get.edgepay.fms.exception.DuplicateRecordException;
 import com.get.edgepay.fms.exception.InputParamNotFoundException;
@@ -21,8 +23,6 @@ import com.get.edgepay.fms.exception.RequestNotFoundException;
 import com.get.edgepay.fms.model.FMSRuleType;
 import com.get.edgepay.fms.service.FMSRuleTypeService;
 import com.get.edgepay.fms.util.FMSCommonUtil;
-import com.get.edgepay.fms.vo.FMSRequest;
-import com.get.edgepay.fms.vo.FMSResponse;
 
 /**
  * @author PalashC

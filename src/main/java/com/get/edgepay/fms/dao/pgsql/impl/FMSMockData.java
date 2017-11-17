@@ -3,9 +3,9 @@ package com.get.edgepay.fms.dao.pgsql.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.get.edgepay.fms.dto.FMSRequest;
 import com.get.edgepay.fms.model.FMSRule;
 import com.get.edgepay.fms.model.FMSRuleDetails;
-import com.get.edgepay.fms.vo.FMSRequest;
 
 public class FMSMockData {
 

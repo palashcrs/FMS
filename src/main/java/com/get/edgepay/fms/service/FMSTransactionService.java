@@ -2,8 +2,8 @@ package com.get.edgepay.fms.service;
 
 import java.util.concurrent.ExecutionException;
 
+import com.get.edgepay.fms.dto.FMSRequest;
 import com.get.edgepay.fms.model.FMSTransaction;
-import com.get.edgepay.fms.vo.FMSRequest;
 
 public interface FMSTransactionService {
 
