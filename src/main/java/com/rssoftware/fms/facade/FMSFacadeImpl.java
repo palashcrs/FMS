@@ -1,6 +1,5 @@
 package com.rssoftware.fms.facade;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -14,7 +13,6 @@ import com.rssoftware.fms.dao.FMSTxnPostgresDao;
 import com.rssoftware.fms.model.FMSRuleDetails;
 import com.rssoftware.fms.model.FMSRuleType;
 import com.rssoftware.fms.model.FMSTransaction;
-import com.rssoftware.fms.repository.CacheRepository;
 
 @Component
 public class FMSFacadeImpl implements FMSFacade {
@@ -30,13 +28,10 @@ public class FMSFacadeImpl implements FMSFacade {
 	@Autowired
 	private FMSTxnPostgresDao fmsTxnPostgresDao;
 
-	@Autowired
-	private CacheRepository cacheRepository;
-
 	@Override
 	public List<FMSRuleDetails> getPubRuleDetails() {
 
-		List<FMSRuleDetails> fmsPubStatusList = (List<FMSRuleDetails>) cacheRepository.findByKey("PUB-RULES");
+		List<FMSRuleDetails> fmsPubStatusList = null;
 
 		if (fmsPubStatusList == null) {
 			log.info("No data found in Cache, getting Public Rules from DB...");
@@ -49,7 +44,7 @@ public class FMSFacadeImpl implements FMSFacade {
 	@Override
 	public List<FMSRuleDetails> getPriRuleDetails() {
 
-		List<FMSRuleDetails> priRuleDetails = (List<FMSRuleDetails>) cacheRepository.findByKey("PRI-RULES");
+		List<FMSRuleDetails> priRuleDetails = null;
 
 		if (priRuleDetails == null) {
 			log.info("No data found in Cache, getting Private Rules from DB...");
@@ -66,12 +61,6 @@ public class FMSFacadeImpl implements FMSFacade {
 		int response = fmsRuleTypePostgresDao.insert(fmsRuleType);
 
 		// Save RuleType-list object in Redis:
-		List<FMSRuleType> allRuleTypeList = (List<FMSRuleType>) cacheRepository.findByKey("RT-ALL");
-		if (allRuleTypeList == null) {
-			allRuleTypeList = new ArrayList();
-		}
-		allRuleTypeList.add(fmsRuleType);
-		cacheRepository.save("RT-ALL", allRuleTypeList);
 
 		return response;
 	}
@@ -79,9 +68,7 @@ public class FMSFacadeImpl implements FMSFacade {
 	@Override
 	public List<FMSRuleType> fetchAllRuleTypes() throws Exception {
 
-		// List<FMSRuleType> allRuleTypeList = null;
-
-		List<FMSRuleType> allRuleTypeList = (List<FMSRuleType>) cacheRepository.findByKey("RT-ALL");
+		List<FMSRuleType> allRuleTypeList = null;
 
 		if (allRuleTypeList == null) {
 			log.info("Cache null! Getting data from DB...");
