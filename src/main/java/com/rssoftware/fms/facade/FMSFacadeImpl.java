@@ -1,5 +1,6 @@
 package com.rssoftware.fms.facade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -61,9 +62,16 @@ public class FMSFacadeImpl implements FMSFacade {
 	@Override
 	public int saveRuleType(FMSRuleType fmsRuleType) throws Exception {
 
+		// Save RuleType-list object in DB:
 		int response = fmsRuleTypePostgresDao.insert(fmsRuleType);
 
-		// Update RuleType-list object in Redis...
+		// Save RuleType-list object in Redis:
+		List<FMSRuleType> allRuleTypeList = (List<FMSRuleType>) cacheRepository.findByKey("RT-ALL");
+		if (allRuleTypeList == null) {
+			allRuleTypeList = new ArrayList();
+		}
+		allRuleTypeList.add(fmsRuleType);
+		cacheRepository.save("RT-ALL", allRuleTypeList);
 
 		return response;
 	}
@@ -71,11 +79,12 @@ public class FMSFacadeImpl implements FMSFacade {
 	@Override
 	public List<FMSRuleType> fetchAllRuleTypes() throws Exception {
 
-		List<FMSRuleType> allRuleTypeList = null;
+		// List<FMSRuleType> allRuleTypeList = null;
 
-		// List<FMSRuleType> allRuleTypeList = cacheRepository.findByKey("RT-ALL");
+		List<FMSRuleType> allRuleTypeList = (List<FMSRuleType>) cacheRepository.findByKey("RT-ALL");
 
 		if (allRuleTypeList == null) {
+			log.info("Cache null! Getting data from DB...");
 			allRuleTypeList = fmsRuleTypePostgresDao.getAll();
 		}
 

@@ -19,10 +19,11 @@ public class RedisConfig {
 	@Bean
 	public JedisConnectionFactory jedisConnectionFactory() {
 		JedisConnectionFactory jedisConFactory = new JedisConnectionFactory();
-		jedisConFactory.setDatabase(0);
-		jedisConFactory.setUsePool(true);
 		jedisConFactory.setHostName("127.0.0.1");
 		jedisConFactory.setPort(6379);
+		jedisConFactory.setTimeout(3000);
+		jedisConFactory.setDatabase(0);
+
 		return jedisConFactory;
 	}
 

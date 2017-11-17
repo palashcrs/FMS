@@ -1,4 +1,4 @@
-package com.rssoftware.fms.test;
+package com.get.edgepay.fms.test;
 
 import java.util.Collections;
 import java.util.List;
