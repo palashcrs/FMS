@@ -1,4 +1,4 @@
-package com.rssoftware.fms.app;
+package com.get.edgepay.fms.app;
 
 import org.apache.catalina.connector.Connector;
 import org.slf4j.Logger;
