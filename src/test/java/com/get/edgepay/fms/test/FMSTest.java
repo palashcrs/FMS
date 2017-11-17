@@ -8,11 +8,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import com.rssoftware.fms.common.FMSRuleConfiguration;
-import com.rssoftware.fms.dao.pgsql.impl.FMSMockData;
-import com.rssoftware.fms.model.FMSRuleDetails;
-import com.rssoftware.fms.util.FMSUtil;
-import com.rssoftware.fms.vo.FMSRequest;
+import com.get.edgepay.fms.common.FMSRuleConfiguration;
+import com.get.edgepay.fms.dao.pgsql.impl.FMSMockData;
+import com.get.edgepay.fms.model.FMSRuleDetails;
+import com.get.edgepay.fms.util.FMSUtil;
+import com.get.edgepay.fms.vo.FMSRequest;
 
 public class FMSTest {
 
