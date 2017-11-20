@@ -16,5 +16,5 @@ public interface FMSFacade {
 
 	List<FMSRuleType> fetchAllRuleTypes() throws Exception;
 
-	List saveOrUpdateFMSTxn(FMSTransaction fmsTransaction) throws Exception;
+	List<Object> saveOrUpdateFMSTxn(FMSTransaction fmsTransaction) throws Exception;
 }

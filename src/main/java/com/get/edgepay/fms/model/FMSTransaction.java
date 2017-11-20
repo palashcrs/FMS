@@ -44,6 +44,8 @@ public class FMSTransaction implements Serializable {
 
 	private String notes;
 
+	private String violatedRules;
+
 	private String createdBy;
 
 	private Timestamp creationTs;
@@ -200,6 +202,14 @@ public class FMSTransaction implements Serializable {
 		this.notes = notes;
 	}
 
+	public String getViolatedRules() {
+		return violatedRules;
+	}
+
+	public void setViolatedRules(String violatedRules) {
+		this.violatedRules = violatedRules;
+	}
+
 	public String getCreatedBy() {
 		return createdBy;
 	}
@@ -239,8 +249,8 @@ public class FMSTransaction implements Serializable {
 				+ fmsTxnStatus + ", email=" + email + ", cardNo=" + cardNo + ", ip=" + ip + ", strAddr=" + strAddr
 				+ ", custName=" + custName + ", avsZip=" + avsZip + ", avsStrAddr=" + avsStrAddr + ", avsCity="
 				+ avsCity + ", avsState=" + avsState + ", geoIp=" + geoIp + ", deviceId=" + deviceId + ", notes="
-				+ notes + ", createdBy=" + createdBy + ", creationTs=" + creationTs + ", updatedBy=" + updatedBy
-				+ ", updateTs=" + updateTs + "]";
+				+ notes + ", violatedRules=" + violatedRules + ", createdBy=" + createdBy + ", creationTs=" + creationTs
+				+ ", updatedBy=" + updatedBy + ", updateTs=" + updateTs + "]";
 	}
 
 }

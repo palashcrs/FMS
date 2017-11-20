@@ -1,8 +1,11 @@
 package com.get.edgepay.fms.service.impl;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -36,13 +39,16 @@ public class FMSTransactionServiceImpl implements FMSTransactionService {
 	@Autowired
 	private FMSFacade fmsFacade;
 
-	@Transactional(rollbackFor = { DBException.class, InterruptedException.class, ExecutionException.class, CacheException.class })
+	@Transactional(rollbackFor = { DBException.class, InterruptedException.class, ExecutionException.class,
+			CacheException.class })
 	@Override
 	public FMSTransaction calculateFraudAndSaveTxn(FMSRequest fmsRequest) throws Exception {
 		FMSTransaction fmsTxn = null;
 		String fmsTxnStatus = null;
-		List<String> fmsPubStatusList = null;
-		List<String> fmsPriStatusList = null;
+		Map<Integer, String> fmsTriggeredPubRulesRes = null;
+		Map<Integer, String> fmsTriggeredPriRulesRes = null;
+		Map<Integer, String> fmsTriggeredRulesRes = null;
+		Set<Integer> fmsRulesViolated = null;
 		List<String> fmsMergedStatusList = null;
 		List<Object> facadeResponse = null;
 		ExecutorService execotorService = Executors.newFixedThreadPool(2);
@@ -50,48 +56,58 @@ public class FMSTransactionServiceImpl implements FMSTransactionService {
 		// ******Fetch all Public-Rules and trigger them in different thread:
 		if (fmsRequest != null) {
 			if (!execotorService.isShutdown()) {
-				Future<List<String>> future = execotorService.submit(new Callable<List<String>>() {
-					List<String> pubStatusList;
+				Future<Map<Integer, String>> future = execotorService.submit(new Callable<Map<Integer, String>>() {
+					Map<Integer, String> pubRulesTriggeredRes;
 
 					@Override
-					public List<String> call() throws Exception {
+					public Map<Integer, String> call() throws Exception {
 						List<FMSRuleDetails> pubRuleDetails = fmsFacade.getPubRuleDetails();
 						if (pubRuleDetails != null) {
-							pubStatusList = FMSRuleConfiguration.triggerRule(pubRuleDetails, fmsRequest);
+							pubRulesTriggeredRes = FMSRuleConfiguration.triggerRule(pubRuleDetails, fmsRequest);
 						}
-						return pubStatusList;
+						return pubRulesTriggeredRes;
 					}
 				});
 
-				fmsPubStatusList = future.get();
+				fmsTriggeredPubRulesRes = future.get();
 			}
 		}
 
 		// ******Fetch all Private-Rules and trigger them in different thread:
 		if (fmsRequest != null) {
 			if (!execotorService.isShutdown()) {
-				Future<List<String>> future = execotorService.submit(new Callable<List<String>>() {
-					List<String> priStatusList;
+				Future<Map<Integer, String>> future = execotorService.submit(new Callable<Map<Integer, String>>() {
+					Map<Integer, String> priRulesTriggeredRes;
 
 					@Override
-					public List<String> call() throws Exception {
+					public Map<Integer, String> call() throws Exception {
 						List<FMSRuleDetails> priRuleDetails = fmsFacade.getPriRuleDetails();
 						if (priRuleDetails != null) {
-							priStatusList = FMSRuleConfiguration.triggerRule(priRuleDetails, fmsRequest);
+							priRulesTriggeredRes = FMSRuleConfiguration.triggerRule(priRuleDetails, fmsRequest);
 						}
-						return priStatusList;
+						return priRulesTriggeredRes;
 					}
 				});
 
-				fmsPriStatusList = future.get();
+				fmsTriggeredPriRulesRes = future.get();
 			}
 		}
 
 		execotorService.shutdown();
 
 		if (execotorService.isShutdown()) {
-			fmsMergedStatusList = FMSUtil.getInstance().mergeLists(fmsPubStatusList, fmsPriStatusList);
-			log.info("FMSMergedStatusList : " + fmsMergedStatusList);
+			fmsTriggeredRulesRes = FMSUtil.getInstance().mergeMaps(fmsTriggeredPubRulesRes, fmsTriggeredPriRulesRes);
+
+			if (fmsTriggeredRulesRes != null && fmsTriggeredRulesRes.size() > 0) {
+				fmsRulesViolated = fmsTriggeredRulesRes.keySet();
+				log.info("FMSRulesViolated set : " + fmsRulesViolated.toString());
+
+				fmsMergedStatusList = new ArrayList<>();
+				for (Integer key : fmsRulesViolated) {
+					fmsMergedStatusList.add(fmsTriggeredRulesRes.get(key));
+				}
+				log.info("FMSMergedStatusList : " + fmsMergedStatusList);
+			}
 
 			fmsTxnStatus = calculateFMSTxnStatus(fmsMergedStatusList);
 
@@ -100,6 +116,9 @@ public class FMSTransactionServiceImpl implements FMSTransactionService {
 					fmsTxn = fmsRequest.getFmsTransactions().get(0);
 					if (fmsTxn != null) {
 						fmsTxn.setFmsTxnStatus(fmsTxnStatus);
+						if (fmsRulesViolated != null) {
+							fmsTxn.setViolatedRules(fmsRulesViolated.toString());
+						}
 						facadeResponse = fmsFacade.saveOrUpdateFMSTxn(fmsTxn);
 					}
 				}
@@ -123,8 +142,7 @@ public class FMSTransactionServiceImpl implements FMSTransactionService {
 				fmsTxnStatus = FMSTxnStatusConstant.DECLINE.toString();
 			} else {
 				int mergedListSize = mergedList.size();
-				int occurrencesOfReview = Collections.frequency(mergedList,
-						FMSRuleDetailsConstant.RULETYPE_ACTION_R.getRuleTypeValue());
+				int occurrencesOfReview = Collections.frequency(mergedList, FMSRuleDetailsConstant.RULETYPE_ACTION_R.getRuleTypeValue());
 				int occurrencesOfOthers = mergedListSize - occurrencesOfReview;
 				if (occurrencesOfReview > occurrencesOfOthers) {
 					fmsTxnStatus = FMSTxnStatusConstant.REVIEW.toString();

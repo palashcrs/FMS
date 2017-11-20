@@ -3,7 +3,9 @@ package com.get.edgepay.fms.util;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FMSUtil {
 
@@ -45,6 +47,23 @@ public class FMSUtil {
 		}
 
 		return mergedList;
+	}
+
+	public <K, V> Map<K, V> mergeMaps(Map<K, V> map, Map<K, V> map2) {
+		Map<K, V> mergedMap = null;
+
+		if ((map != null && map.size() > 0) && (map2 == null || map2.isEmpty())) {
+			mergedMap = new HashMap<>(map);
+		}
+		if ((map == null || map.isEmpty()) && (map2 != null && map2.size() > 0)) {
+			mergedMap = new HashMap<>(map2);
+		}
+		if ((map != null && map.size() > 0) && (map2 != null && map2.size() > 0)) {
+			mergedMap = new HashMap<>(map);
+			mergedMap.putAll(map2);
+		}
+
+		return mergedMap;
 	}
 
 }

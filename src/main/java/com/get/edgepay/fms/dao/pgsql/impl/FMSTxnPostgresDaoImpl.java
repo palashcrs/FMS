@@ -27,7 +27,7 @@ public class FMSTxnPostgresDaoImpl implements FMSTxnPostgresDao {
 
 	private static final Logger log = LoggerFactory.getLogger(FMSTxnPostgresDaoImpl.class);
 
-	private static final String UPSERT_SQL = "INSERT INTO EDGEPAY_TRANSACTION(EDGEPAY_TXN_ID,EDGEPAY_TXN_TYPE,EDGEPAY_TXN_TOTAL_AMT,EDGEPAY_TXN_STATUS,EDGEPAY_FMS_TXN_STATUS,EDGEPAY_TXN_EMAIL,EDGEPAY_TXN_CARD_NO,EDGEPAY_TXN_IP,EDGEPAY_TXN_STR_ADDR,EDGEPAY_TXN_CUSTNAME,EDGEPAY_TXN_AVS_ZIP,EDGEPAY_TXN_AVS_STR_ADDR,EDGEPAY_TXN_AVS_CITY,EDGEPAY_TXN_AVS_STATE,EDGEPAY_TXN_GEOLOC_IP,EDGEPAY_TXN_DEVICE_ID,EDGEPAY_TXN_NOTES,EDGEPAY_TXN_CREATED_BY,EDGEPAY_TXN_CREATION_TS,EDGEPAY_TXN_UPDATED_BY,EDGEPAY_TXN_UPDATED_TS)  VALUES(:edgePayTxnId,:txnType,:txnAmt,:edgePayTxnStatus,:fmsTxnStatus,:email,:cardNo,:ip,:strAddr,:custName,:avsZip,:avsStrAddr,:avsCity,:avsState,:geoLoc,:deviceId,:notes,:createdBy,:createdTs,:updatedBy,:updatedTs) "
+	private static final String UPSERT_SQL = "INSERT INTO EDGEPAY_TRANSACTION(EDGEPAY_TXN_ID,EDGEPAY_TXN_TYPE,EDGEPAY_TXN_TOTAL_AMT,EDGEPAY_TXN_STATUS,EDGEPAY_FMS_TXN_STATUS,EDGEPAY_TXN_EMAIL,EDGEPAY_TXN_CARD_NO,EDGEPAY_TXN_IP,EDGEPAY_TXN_STR_ADDR,EDGEPAY_TXN_CUSTNAME,EDGEPAY_TXN_AVS_ZIP,EDGEPAY_TXN_AVS_STR_ADDR,EDGEPAY_TXN_AVS_CITY,EDGEPAY_TXN_AVS_STATE,EDGEPAY_TXN_GEOLOC_IP,EDGEPAY_TXN_DEVICE_ID,EDGEPAY_TXN_NOTES,EDGEPAY_TXN_VIOLATED_RULES,EDGEPAY_TXN_CREATED_BY,EDGEPAY_TXN_CREATION_TS,EDGEPAY_TXN_UPDATED_BY,EDGEPAY_TXN_UPDATED_TS)  VALUES(:edgePayTxnId,:txnType,:txnAmt,:edgePayTxnStatus,:fmsTxnStatus,:email,:cardNo,:ip,:strAddr,:custName,:avsZip,:avsStrAddr,:avsCity,:avsState,:geoLoc,:deviceId,:notes,:violatedRules,:createdBy,:createdTs,:updatedBy,:updatedTs) "
 			+ " ON CONFLICT(EDGEPAY_TXN_ID) DO UPDATE SET EDGEPAY_TXN_STATUS=:edgePayTxnStatus,EDGEPAY_FMS_TXN_STATUS=:fmsTxnStatus,EDGEPAY_TXN_NOTES=:notes,EDGEPAY_TXN_UPDATED_BY=:updatedBy,EDGEPAY_TXN_UPDATED_TS=:updatedTs";
 
 	@Autowired
@@ -67,6 +67,7 @@ public class FMSTxnPostgresDaoImpl implements FMSTxnPostgresDao {
 		params.put("geoLoc", fmsTransaction.getGeoIp());
 		params.put("deviceId", fmsTransaction.getDeviceId());
 		params.put("notes", fmsTransaction.getNotes());
+		params.put("violatedRules", fmsTransaction.getViolatedRules());
 		params.put("createdBy", fmsTransaction.getCreatedBy());
 		params.put("createdTs", creationTS);
 		params.put("updatedBy", fmsTransaction.getUpdatedBy());
