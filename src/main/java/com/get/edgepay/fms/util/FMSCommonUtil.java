@@ -103,8 +103,8 @@ public class FMSCommonUtil {
 
 	public String isContainsAndSetStatus(String arg1, String arg2, String action) {
 		String fmsStatus = null;
-		if (arg1 != null) {
-			if (arg1.contains(arg2)) {
+		if (arg2 != null) {
+			if (arg2.contains(arg1)) {
 				if (FMSRuleDetailsConstant.RULETYPE_ACCESSMODE_REVIEW.getRuleTypeValue().equalsIgnoreCase(action)) {
 					fmsStatus = FMSRuleDetailsConstant.RULETYPE_ACTION_R.getRuleTypeValue();
 				} else if (FMSRuleDetailsConstant.RULETYPE_ACCESSMODE_DECLINE.getRuleTypeValue()

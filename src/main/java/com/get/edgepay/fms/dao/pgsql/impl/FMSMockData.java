@@ -75,13 +75,13 @@ public class FMSMockData {
 		fmsRuleDetails5.setRuleType("WORD");
 		fmsRuleDetails5.setAccessMode("PRIVATE");
 		fmsRuleDetails5.setAction("Review");
-		fmsRuleDetails5.setWord("aaaRghmm");
+		fmsRuleDetails5.setWord("aaa");
 
 		FMSRuleDetails fmsRuleDetails6 = new FMSRuleDetails();
 		fmsRuleDetails6.setRuleType("WORD");
 		fmsRuleDetails6.setAccessMode("PRIVATE");
 		fmsRuleDetails6.setAction("Decline");
-		fmsRuleDetails6.setWord("Qazcvbbbmb");
+		fmsRuleDetails6.setWord("bbb");
 
 		privateRules.add(fmsRuleDetails);
 		privateRules.add(fmsRuleDetails2);
@@ -101,7 +101,7 @@ public class FMSMockData {
 		FMSRule fmsRule = new FMSRule();
 		fmsRule.setEmail("pqr@gmail.com");
 		fmsRule.setCardNo("442256342313");
-		fmsRule.setWord("aaa");
+		fmsRule.setWord("aaabbb");
 		fmsRules.set(0, fmsRule);
 
 		return fmsRequest;
