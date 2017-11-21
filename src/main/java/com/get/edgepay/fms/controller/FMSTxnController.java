@@ -43,7 +43,7 @@ public class FMSTxnController {
 	 */
 	@RequestMapping(value = "/fraudcalc", method = RequestMethod.POST)
 	public FMSResponse getFmsTypes(@RequestBody FMSRequest fmsRequest) {
-		//log.info("*********/fmstxn/fraudcalc | FMSRequest : " + fmsRequest);
+		log.info("*********/fmstxn/fraudcalc | FMSRequest : " + fmsRequest);
 		FMSResponse fmsResponse = new FMSResponse();
 		Object fmsOb = null;
 		FMSTransaction fmsTxn = null;
@@ -52,7 +52,7 @@ public class FMSTxnController {
 			FMSCommonUtil.getInstance().validateInput(fmsRequest, FMSConstant.TXN_FRAUD_CALC_FLAG);
 
 			fmsTxn = fmsTransactionService.calculateFraudAndSaveTxn(fmsRequest);
-			//log.info("FMSTxn : " + fmsTxn);
+			log.info("FMSTxn : " + fmsTxn);
 			fmsOb = fmsTxn;
 
 			fmsResponse.setFmsResponseCode(FMSResponseStatus.SUCCESS.toString());

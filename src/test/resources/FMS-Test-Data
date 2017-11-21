@@ -1,5 +1,4 @@
 #Endpoint: http://localhost:8900/fmsruletype/newruletype
-
 #Json-input:
 {
    "merchantId":"MID3347",
@@ -14,14 +13,12 @@
 =============================================================================================
 
 #Endpoint: http://localhost:8900/fmsruletype/allruletypes
-
 #Json-input:
 {}
 
 =============================================================================================
 
 #Endpoint: http://localhost:8900/fmstxn/fraudcalc
-
 #Json-input:
 {
    "merchantId":"MID55893266",
