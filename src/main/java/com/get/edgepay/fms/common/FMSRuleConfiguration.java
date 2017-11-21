@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.get.edgepay.fms.dto.FMSRequest;
-import com.get.edgepay.fms.model.FMSRuleDetails;
+import com.get.edgepay.fms.model.FMSRule;
 import com.get.edgepay.fms.util.FMSCommonUtil;
 
 /**
@@ -26,7 +26,7 @@ public class FMSRuleConfiguration {
 	/**
 	 * This method validates all Public and Private Rules.
 	 */
-	public static Map<Integer, String> triggerRule(List<FMSRuleDetails> ruleDetails, FMSRequest fmsRequest) {
+	public static Map<Integer, String> triggerRule(List<FMSRule> rules, FMSRequest fmsRequest) {
 		Map<Integer, String> fmsTriggeredRuleResponse = new HashMap<>();
 		String fmsTriggeredRuleStatus = null;
 		String emailReq = null;
@@ -43,33 +43,35 @@ public class FMSRuleConfiguration {
 			}
 		}
 
-		if (ruleDetails != null) {
-			for (FMSRuleDetails rd : ruleDetails) {
-				if (rd != null) {
-					// ******************Trigger RuleType = EMAIL**********//
-					if (FMSRuleDetailsConstant.RULETYPE_EMAIL.getRuleTypeValue().equalsIgnoreCase(rd.getRuleType())) {
-						if (emailReq != null || "".equals(emailReq)) {
-							fmsTriggeredRuleStatus = triggerEmailRule(rd.getEmail(), emailReq, rd.getAction());
-							if (fmsTriggeredRuleStatus != null) { // consider only 'R' and 'D'
-								fmsTriggeredRuleResponse.put(rd.getRuleId(), fmsTriggeredRuleStatus);
+		if (rules != null) {
+			for (FMSRule r : rules) {
+				if (r != null) {
+					if(r.getFmsRuleType() != null){
+						// ******************Trigger RuleType = EMAIL**********//
+						if (FMSRuleConstant.RULETYPE_EMAIL.getRuleTypeValue().equalsIgnoreCase(r.getFmsRuleType().getRuleType())) {
+							if (emailReq != null || "".equals(emailReq)) {
+								fmsTriggeredRuleStatus = triggerEmailRule(r.getEmail(), emailReq, r.getFmsRuleType().getAction());
+								if (fmsTriggeredRuleStatus != null) { // consider only 'R' and 'D'
+									fmsTriggeredRuleResponse.put(r.getRuleId(), fmsTriggeredRuleStatus);
+								}
 							}
 						}
-					}
-					// ******************Trigger RuleType = CARDNO**********//
-					if (FMSRuleDetailsConstant.RULETYPE_CARDNO.getRuleTypeValue().equalsIgnoreCase(rd.getRuleType())) {
-						if (cardNoReq != null || "".equals(cardNoReq)) {
-							fmsTriggeredRuleStatus = triggerCardNoRule(rd.getCardNo(), cardNoReq, rd.getAction());
-							if (fmsTriggeredRuleStatus != null) {
-								fmsTriggeredRuleResponse.put(rd.getRuleId(), fmsTriggeredRuleStatus);
+						// ******************Trigger RuleType = CARDNO**********//
+						if (FMSRuleConstant.RULETYPE_CARDNO.getRuleTypeValue().equalsIgnoreCase(r.getFmsRuleType().getRuleType())) {
+							if (cardNoReq != null || "".equals(cardNoReq)) {
+								fmsTriggeredRuleStatus = triggerCardNoRule(r.getCardNo(), cardNoReq, r.getFmsRuleType().getAction());
+								if (fmsTriggeredRuleStatus != null) {
+									fmsTriggeredRuleResponse.put(r.getRuleId(), fmsTriggeredRuleStatus);
+								}
 							}
 						}
-					}
-					// ******************Trigger RuleType = WORD**********//
-					if (FMSRuleDetailsConstant.RULETYPE_WORD.getRuleTypeValue().equalsIgnoreCase(rd.getRuleType())) {
-						if (custName != null || "".equals(custName)) {
-							fmsTriggeredRuleStatus = triggerWordRule(rd.getWord(), custName, rd.getAction());
-							if (fmsTriggeredRuleStatus != null) {
-								fmsTriggeredRuleResponse.put(rd.getRuleId(), fmsTriggeredRuleStatus);
+						// ******************Trigger RuleType = WORD**********//
+						if (FMSRuleConstant.RULETYPE_WORD.getRuleTypeValue().equalsIgnoreCase(r.getFmsRuleType().getRuleType())) {
+							if (custName != null || "".equals(custName)) {
+								fmsTriggeredRuleStatus = triggerWordRule(r.getWord(), custName,  r.getFmsRuleType().getAction());
+								if (fmsTriggeredRuleStatus != null) {
+									fmsTriggeredRuleResponse.put(r.getRuleId(), fmsTriggeredRuleStatus);
+								}
 							}
 						}
 					}

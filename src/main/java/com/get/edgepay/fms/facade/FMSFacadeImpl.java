@@ -11,9 +11,9 @@ import com.get.edgepay.fms.constant.CacheConstant;
 import com.get.edgepay.fms.dao.FMSRulePostgresDao;
 import com.get.edgepay.fms.dao.FMSRuleTypePostgresDao;
 import com.get.edgepay.fms.dao.FMSTxnPostgresDao;
-import com.get.edgepay.fms.dto.FMSRuleDetailsCacheDto;
+import com.get.edgepay.fms.dto.FMSRuleCacheDto;
 import com.get.edgepay.fms.dto.FMSRuleTypeCacheDto;
-import com.get.edgepay.fms.model.FMSRuleDetails;
+import com.get.edgepay.fms.model.FMSRule;
 import com.get.edgepay.fms.model.FMSRuleType;
 import com.get.edgepay.fms.model.FMSTransaction;
 import com.get.edgepay.fms.util.CacheUtil;
@@ -59,14 +59,14 @@ public class FMSFacadeImpl implements FMSFacade {
 	}
 
 	@Override
-	public List<FMSRuleDetails> getPubRuleDetails() {
-		List<FMSRuleDetails> pubRuleDetails = (List<FMSRuleDetails>) cacheUtil.getFromCache(PUB_RULES, PUB_RULES, FMSRuleDetailsCacheDto.class);
+	public List<FMSRule> getPubRuleDetails() {
+		List<FMSRule> pubRuleDetails = (List<FMSRule>) cacheUtil.getFromCache(PUB_RULES, PUB_RULES, FMSRuleCacheDto.class);
 		return pubRuleDetails;
 	}
 
 	@Override
-	public List<FMSRuleDetails> getPriRuleDetails() {
-		List<FMSRuleDetails> priRuleDetails = (List<FMSRuleDetails>) cacheUtil.getFromCache(PRI_RULES, PRI_RULES, FMSRuleDetailsCacheDto.class);
+	public List<FMSRule> getPriRuleDetails() {
+		List<FMSRule> priRuleDetails = (List<FMSRule>) cacheUtil.getFromCache(PRI_RULES, PRI_RULES, FMSRuleCacheDto.class);
 		return priRuleDetails;
 	}
 

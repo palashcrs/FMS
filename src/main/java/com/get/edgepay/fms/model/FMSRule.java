@@ -10,8 +10,6 @@ public class FMSRule implements Serializable {
 
 	private Integer ruleId;
 
-	private Integer ruleTypeId;
-
 	private String email;
 
 	private String cardNo;
@@ -44,6 +42,8 @@ public class FMSRule implements Serializable {
 
 	private String deviceId;
 
+	private FMSRuleType fmsRuleType;
+
 	private String createdBy;
 
 	private Timestamp creationTs;
@@ -58,14 +58,6 @@ public class FMSRule implements Serializable {
 
 	public void setRuleId(Integer ruleId) {
 		this.ruleId = ruleId;
-	}
-
-	public Integer getRuleTypeId() {
-		return ruleTypeId;
-	}
-
-	public void setRuleTypeId(Integer ruleTypeId) {
-		this.ruleTypeId = ruleTypeId;
 	}
 
 	public String getEmail() {
@@ -196,6 +188,14 @@ public class FMSRule implements Serializable {
 		this.deviceId = deviceId;
 	}
 
+	public FMSRuleType getFmsRuleType() {
+		return fmsRuleType;
+	}
+
+	public void setFmsRuleType(FMSRuleType fmsRuleType) {
+		this.fmsRuleType = fmsRuleType;
+	}
+
 	public String getCreatedBy() {
 		return createdBy;
 	}
@@ -214,12 +214,12 @@ public class FMSRule implements Serializable {
 
 	@Override
 	public String toString() {
-		return "FMSRule [ruleId=" + ruleId + ", ruleTypeId=" + ruleTypeId + ", email=" + email + ", cardNo=" + cardNo
-				+ ", strAddr=" + strAddr + ", ip=" + ip + ", word=" + word + ", cardLimit=" + cardLimit + ", ipLimit="
-				+ ipLimit + ", maxAmtLimit=" + maxAmtLimit + ", timePeriod=" + timePeriod + ", avsZip=" + avsZip
-				+ ", avsStrAddr=" + avsStrAddr + ", avsCity=" + avsCity + ", avsState=" + avsState + ", avsResult="
-				+ avsResult + ", geoIp=" + geoIp + ", deviceId=" + deviceId + ", createdBy=" + createdBy
-				+ ", creationTs=" + creationTs + "]";
+		return "FMSRule [ruleId=" + ruleId + ", email=" + email + ", cardNo=" + cardNo + ", strAddr=" + strAddr
+				+ ", ip=" + ip + ", word=" + word + ", cardLimit=" + cardLimit + ", ipLimit=" + ipLimit
+				+ ", maxAmtLimit=" + maxAmtLimit + ", timePeriod=" + timePeriod + ", avsZip=" + avsZip + ", avsStrAddr="
+				+ avsStrAddr + ", avsCity=" + avsCity + ", avsState=" + avsState + ", avsResult=" + avsResult
+				+ ", geoIp=" + geoIp + ", deviceId=" + deviceId + ", fmsRuleType=" + fmsRuleType + ", createdBy="
+				+ createdBy + ", creationTs=" + creationTs + "]";
 	}
 
 }

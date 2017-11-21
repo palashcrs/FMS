@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import com.get.edgepay.fms.common.FMSError;
 import com.get.edgepay.fms.common.FMSErrorCode;
 import com.get.edgepay.fms.common.FMSErrorCodeMap;
-import com.get.edgepay.fms.common.FMSRuleDetailsConstant;
+import com.get.edgepay.fms.common.FMSRuleConstant;
 import com.get.edgepay.fms.constant.FMSConstant;
 import com.get.edgepay.fms.dto.FMSRequest;
 import com.get.edgepay.fms.dto.FMSResponse;
@@ -89,11 +89,11 @@ public class FMSCommonUtil {
 		String fmsStatus = null;
 		if (arg1 != null) {
 			if (arg1.equals(arg2)) {
-				if (FMSRuleDetailsConstant.RULETYPE_ACCESSMODE_REVIEW.getRuleTypeValue().equalsIgnoreCase(action)) {
-					fmsStatus = FMSRuleDetailsConstant.RULETYPE_ACTION_R.getRuleTypeValue();
-				} else if (FMSRuleDetailsConstant.RULETYPE_ACCESSMODE_DECLINE.getRuleTypeValue()
+				if (FMSRuleConstant.RULETYPE_ACCESSMODE_REVIEW.getRuleTypeValue().equalsIgnoreCase(action)) {
+					fmsStatus = FMSRuleConstant.RULETYPE_ACTION_R.getRuleTypeValue();
+				} else if (FMSRuleConstant.RULETYPE_ACCESSMODE_DECLINE.getRuleTypeValue()
 						.equalsIgnoreCase(action)) {
-					fmsStatus = FMSRuleDetailsConstant.RULETYPE_ACTION_D.getRuleTypeValue();
+					fmsStatus = FMSRuleConstant.RULETYPE_ACTION_D.getRuleTypeValue();
 				}
 			}
 		}
@@ -105,11 +105,11 @@ public class FMSCommonUtil {
 		String fmsStatus = null;
 		if (arg2 != null) {
 			if (arg2.contains(arg1)) {
-				if (FMSRuleDetailsConstant.RULETYPE_ACCESSMODE_REVIEW.getRuleTypeValue().equalsIgnoreCase(action)) {
-					fmsStatus = FMSRuleDetailsConstant.RULETYPE_ACTION_R.getRuleTypeValue();
-				} else if (FMSRuleDetailsConstant.RULETYPE_ACCESSMODE_DECLINE.getRuleTypeValue()
+				if (FMSRuleConstant.RULETYPE_ACCESSMODE_REVIEW.getRuleTypeValue().equalsIgnoreCase(action)) {
+					fmsStatus = FMSRuleConstant.RULETYPE_ACTION_R.getRuleTypeValue();
+				} else if (FMSRuleConstant.RULETYPE_ACCESSMODE_DECLINE.getRuleTypeValue()
 						.equalsIgnoreCase(action)) {
-					fmsStatus = FMSRuleDetailsConstant.RULETYPE_ACTION_D.getRuleTypeValue();
+					fmsStatus = FMSRuleConstant.RULETYPE_ACTION_D.getRuleTypeValue();
 				}
 			}
 		}

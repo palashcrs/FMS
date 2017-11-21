@@ -19,13 +19,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.get.edgepay.fms.common.FMSRuleConfiguration;
-import com.get.edgepay.fms.common.FMSRuleDetailsConstant;
+import com.get.edgepay.fms.common.FMSRuleConstant;
 import com.get.edgepay.fms.constant.FMSTxnStatusConstant;
 import com.get.edgepay.fms.dto.FMSRequest;
 import com.get.edgepay.fms.exception.CacheException;
 import com.get.edgepay.fms.exception.DBException;
 import com.get.edgepay.fms.facade.FMSFacade;
-import com.get.edgepay.fms.model.FMSRuleDetails;
+import com.get.edgepay.fms.model.FMSRule;
 import com.get.edgepay.fms.model.FMSTransaction;
 import com.get.edgepay.fms.service.FMSTransactionService;
 import com.get.edgepay.fms.util.FMSCommonUtil;
@@ -61,7 +61,7 @@ public class FMSTransactionServiceImpl implements FMSTransactionService {
 
 					@Override
 					public Map<Integer, String> call() throws Exception {
-						List<FMSRuleDetails> pubRuleDetails = fmsFacade.getPubRuleDetails();
+						List<FMSRule> pubRuleDetails = fmsFacade.getPubRuleDetails();
 						if (pubRuleDetails != null) {
 							pubRulesTriggeredRes = FMSRuleConfiguration.triggerRule(pubRuleDetails, fmsRequest);
 						}
@@ -81,7 +81,7 @@ public class FMSTransactionServiceImpl implements FMSTransactionService {
 
 					@Override
 					public Map<Integer, String> call() throws Exception {
-						List<FMSRuleDetails> priRuleDetails = fmsFacade.getPriRuleDetails();
+						List<FMSRule> priRuleDetails = fmsFacade.getPriRuleDetails();
 						if (priRuleDetails != null) {
 							priRulesTriggeredRes = FMSRuleConfiguration.triggerRule(priRuleDetails, fmsRequest);
 						}
@@ -138,11 +138,11 @@ public class FMSTransactionServiceImpl implements FMSTransactionService {
 		String fmsTxnStatus = null;
 
 		if (mergedList != null) {
-			if (mergedList.contains(FMSRuleDetailsConstant.RULETYPE_ACTION_D.getRuleTypeValue())) {
+			if (mergedList.contains(FMSRuleConstant.RULETYPE_ACTION_D.getRuleTypeValue())) {
 				fmsTxnStatus = FMSTxnStatusConstant.DECLINE.toString();
 			} else {
 				int mergedListSize = mergedList.size();
-				int occurrencesOfReview = Collections.frequency(mergedList, FMSRuleDetailsConstant.RULETYPE_ACTION_R.getRuleTypeValue());
+				int occurrencesOfReview = Collections.frequency(mergedList, FMSRuleConstant.RULETYPE_ACTION_R.getRuleTypeValue());
 				int occurrencesOfOthers = mergedListSize - occurrencesOfReview;
 				if (occurrencesOfReview > occurrencesOfOthers) {
 					fmsTxnStatus = FMSTxnStatusConstant.REVIEW.toString();

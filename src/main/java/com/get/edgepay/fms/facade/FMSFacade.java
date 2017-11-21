@@ -2,15 +2,15 @@ package com.get.edgepay.fms.facade;
 
 import java.util.List;
 
-import com.get.edgepay.fms.model.FMSRuleDetails;
+import com.get.edgepay.fms.model.FMSRule;
 import com.get.edgepay.fms.model.FMSRuleType;
 import com.get.edgepay.fms.model.FMSTransaction;
 
 public interface FMSFacade {
 
-	List<FMSRuleDetails> getPubRuleDetails();
+	List<FMSRule> getPubRuleDetails();
 
-	List<FMSRuleDetails> getPriRuleDetails();
+	List<FMSRule> getPriRuleDetails();
 
 	int saveRuleType(FMSRuleType fmsRuleType) throws Exception;
 

@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 import com.get.edgepay.fms.constant.CacheConstant;
 import com.get.edgepay.fms.dao.FMSRulePostgresDao;
 import com.get.edgepay.fms.dao.FMSRuleTypePostgresDao;
-import com.get.edgepay.fms.dto.FMSRuleDetailsCacheDto;
+import com.get.edgepay.fms.dto.FMSRuleCacheDto;
 import com.get.edgepay.fms.dto.FMSRuleTypeCacheDto;
-import com.get.edgepay.fms.model.FMSRuleDetails;
+import com.get.edgepay.fms.model.FMSRule;
 import com.get.edgepay.fms.model.FMSRuleType;
 import com.get.edgepay.fms.service.CacheService;
 import com.get.edgepay.fms.util.CacheUtil;
@@ -69,16 +69,16 @@ public class CacheServiceImpl implements CacheService {
 
 	@Override
 	public void loadAllPubRuleDetails() {
-		List<FMSRuleDetails> pubRuleDetails = fmsRulePostgresDao.getPubRuleDetails();
-		cacheUtil.removeFromCache(PUB_RULES, FMSRuleDetailsCacheDto.class);
+		List<FMSRule> pubRuleDetails = fmsRulePostgresDao.getPubRuleDetails();
+		cacheUtil.removeFromCache(PUB_RULES, FMSRuleCacheDto.class);
 		cacheUtil.addToCache(PUB_RULES, PUB_RULES, pubRuleDetails);
 
 	}
 
 	@Override
 	public void loadAllPriRuleDetails() {
-		List<FMSRuleDetails> priRuleDetails = fmsRulePostgresDao.getPriRuleDetails();
-		cacheUtil.removeFromCache(PRI_RULES, FMSRuleDetailsCacheDto.class);
+		List<FMSRule> priRuleDetails = fmsRulePostgresDao.getPriRuleDetails();
+		cacheUtil.removeFromCache(PRI_RULES, FMSRuleCacheDto.class);
 		cacheUtil.addToCache(PRI_RULES, PRI_RULES, priRuleDetails);
 	}
 

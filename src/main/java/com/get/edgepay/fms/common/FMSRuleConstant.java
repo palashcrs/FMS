@@ -1,6 +1,6 @@
 package com.get.edgepay.fms.common;
 
-public enum FMSRuleDetailsConstant {
+public enum FMSRuleConstant {
 
 	RULETYPE_EMAIL("EMAIL"), RULETYPE_CARDNO("CARDNO"), RULETYPE_WORD("WORD"),
 
@@ -10,7 +10,7 @@ public enum FMSRuleDetailsConstant {
 
 	private String ruleTypeValue;
 
-	private FMSRuleDetailsConstant(String ruleTypeValue) {
+	private FMSRuleConstant(String ruleTypeValue) {
 		this.ruleTypeValue = ruleTypeValue;
 	}
 

@@ -1,6 +1,7 @@
 package com.get.edgepay.fms.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 public class FMSRuleType implements Serializable {
 
@@ -13,6 +14,8 @@ public class FMSRuleType implements Serializable {
 	private String accessMode;
 
 	private String action;
+
+	private Set<FMSRule> rules;
 
 	public FMSRuleType() {
 
@@ -50,10 +53,18 @@ public class FMSRuleType implements Serializable {
 		this.action = action;
 	}
 
+	public Set<FMSRule> getRules() {
+		return rules;
+	}
+
+	public void setRules(Set<FMSRule> rules) {
+		this.rules = rules;
+	}
+
 	@Override
 	public String toString() {
 		return "FMSRuleType [ruleTypeId=" + ruleTypeId + ", ruleType=" + ruleType + ", accessMode=" + accessMode
-				+ ", action=" + action + "]";
+				+ ", action=" + action + ", rules=" + rules + "]";
 	}
 
 }

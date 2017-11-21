@@ -11,7 +11,7 @@ public class FMSTest {
 
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		FMSMockData fmsMockData = new FMSMockData();
-		FMSRequest fmsRequest = fmsMockData.getMockTransaction();
+		//FMSRequest fmsRequest = fmsMockData.getMockTransaction();
 		ExecutorService execotorService = Executors.newFixedThreadPool(2);
 
 		// **********************Get data and Triggering Rules:

@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import com.get.edgepay.fms.common.Postgres;
 import com.get.edgepay.fms.dao.FMSRulePostgresDao;
-import com.get.edgepay.fms.model.FMSRuleDetails;
+import com.get.edgepay.fms.model.FMSRule;
 
 @Postgres
 public class FMSRulePostgresDaoImpl implements FMSRulePostgresDao {
@@ -24,16 +24,16 @@ public class FMSRulePostgresDaoImpl implements FMSRulePostgresDao {
 	private NamedParameterJdbcTemplate jdbcNTemplate;
 
 	@Override
-	public List<FMSRuleDetails> getPubRuleDetails() {
+	public List<FMSRule> getPubRuleDetails() {
 		FMSMockData fmsMockData = new FMSMockData();
-		List<FMSRuleDetails> pubRuleDetails = fmsMockData.getMockPublicRuleDetails();
+		List<FMSRule> pubRuleDetails = fmsMockData.getMockPublicRuleDetails();
 		return pubRuleDetails;
 	}
 
 	@Override
-	public List<FMSRuleDetails> getPriRuleDetails() {
+	public List<FMSRule> getPriRuleDetails() {
 		FMSMockData fmsMockData = new FMSMockData();
-		List<FMSRuleDetails> priRuleDetails = fmsMockData.getMockPrivateRuleDetails();
+		List<FMSRule> priRuleDetails = fmsMockData.getMockPrivateRuleDetails();
 		return priRuleDetails;
 	}
 
