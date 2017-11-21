@@ -26,9 +26,20 @@ public class FMSRuleTypePostgresDaoImpl implements FMSRuleTypePostgresDao {
 
 	private static final Logger log = LoggerFactory.getLogger(FMSRuleTypePostgresDaoImpl.class);
 
-	private static final String INSERT_SQL = "INSERT INTO EDGEPAY_RULE_TYPE(EDGEPAY_RULE_TYPE,EDGEPAY_ACCESS_MODE,EDGEPAY_ACTION) VALUES(:ruleType,:accessMode,:action)";
+	private static final String INSERT_SQL = "INSERT INTO EDGEPAY_FMS_RULE_TYPE "
+			 + " ( "
+			 + "EDGEPAY_RULE_TYPE, "
+			 + "EDGEPAY_ACCESS_MODE, "
+			 + "EDGEPAY_ACTION"
+			 + ") "
+			 + " VALUES"
+			 + "("
+			 + ":ruleType, "
+			 + ":accessMode, "
+			 + ":action"
+			 + ") ";
 
-	private static final String SELECT_ALL_SQL = "SELECT * FROM EDGEPAY_RULE_TYPE";
+	private static final String SELECT_ALL_SQL = "SELECT * FROM EDGEPAY_FMS_RULE_TYPE";
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;

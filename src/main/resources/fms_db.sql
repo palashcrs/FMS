@@ -2,8 +2,8 @@ drop schema if exists fms_schema_1 cascade;
 create schema fms_schema_1;
 
 
-drop table if exists fms_schema_1.EDGEPAY_RULE_TYPE cascade;
-create table fms_schema_1.EDGEPAY_RULE_TYPE
+drop table if exists fms_schema_1.EDGEPAY_FMS_RULE_TYPE cascade;
+create table fms_schema_1.EDGEPAY_FMS_RULE_TYPE
 (
 EDGEPAY_RULE_TYPE_ID 			serial primary key not null,
 EDGEPAY_RULE_TYPE 				character varying(100),
@@ -13,15 +13,16 @@ UNIQUE (EDGEPAY_RULE_TYPE,EDGEPAY_ACCESS_MODE,EDGEPAY_ACTION)
 );
 
 
-drop table if exists fms_schema_1.EDGEPAY_RULE cascade;
-create table fms_schema_1.EDGEPAY_RULE
+drop table if exists fms_schema_1.EDGEPAY_FMS_RULE cascade;
+create table fms_schema_1.EDGEPAY_FMS_RULE
 (
 EDGEPAY_RULE_ID			  		serial primary key not null, 
-EDGEPAY_RULE_TYPE_ID		  	integer REFERENCES fms_schema_1.EDGEPAY_RULE_TYPE(EDGEPAY_RULE_TYPE_ID),      
+EDGEPAY_RULE_TYPE_ID		  	integer REFERENCES fms_schema_1.EDGEPAY_FMS_RULE_TYPE(EDGEPAY_RULE_TYPE_ID),      
 EDGEPAY_EMAIL              	  	character varying(100),   
 EDGEPAY_CARD_NO            	  	character varying(100),
 EDGEPAY_IP                		character varying(100),         
-EDGEPAY_STR_ADDR          	  	character varying(100),																						        EDGEPAY_WORD                	character varying(100),                                                           
+EDGEPAY_STR_ADDR          	  	character varying(100),																						        
+EDGEPAY_WORD                	character varying(100),                                                           
 EDGEPAY_LIMIT_CARD 	  			integer,                                          
 EDGEPAY_LIMIT_IP 		  		integer,
 EDGEPAY_LIMIT_MAX_AMT	  		decimal,
@@ -38,8 +39,8 @@ EDGEPAY_RULE_CREATION_TS 	  	timestamp without time zone
 );
 
 
-drop table if exists fms_schema_1.EDGEPAY_TRANSACTION cascade;					                                               
-create table fms_schema_1.EDGEPAY_TRANSACTION
+drop table if exists fms_schema_1.EDGEPAY_FMS_TRANSACTION cascade;					                                               
+create table fms_schema_1.EDGEPAY_FMS_TRANSACTION
 (    
 EDGEPAY_FMS_TXN_ID				serial primary key not null, 
 EDGEPAY_TXN_ID					character varying(100),
