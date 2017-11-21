@@ -20,7 +20,7 @@ public class FMSMockData {
 		fmsRule.setRuleId(36);
 		fmsRule.setFmsRuleType(fmsRuleType);
 		fmsRule.setEmail("abc@gmail.com");
-		
+
 		FMSRule fmsRule2 = new FMSRule();
 		FMSRuleType fmsRuleType2 = new FMSRuleType();
 		fmsRuleType2.setRuleTypeId(2);
@@ -30,7 +30,7 @@ public class FMSMockData {
 		fmsRule2.setRuleId(5);
 		fmsRule2.setFmsRuleType(fmsRuleType2);
 		fmsRule2.setEmail("pqr@gmail.com");
-		
+
 		FMSRule fmsRule3 = new FMSRule();
 		FMSRuleType fmsRuleType3 = new FMSRuleType();
 		fmsRuleType3.setRuleTypeId(5);
@@ -40,7 +40,7 @@ public class FMSMockData {
 		fmsRule3.setRuleId(3);
 		fmsRule3.setFmsRuleType(fmsRuleType3);
 		fmsRule3.setCardNo("442256342313");
-		
+
 		FMSRule fmsRule4 = new FMSRule();
 		FMSRuleType fmsRuleType4 = new FMSRuleType();
 		fmsRuleType4.setRuleTypeId(6);
@@ -50,7 +50,7 @@ public class FMSMockData {
 		fmsRule4.setRuleId(4);
 		fmsRule4.setFmsRuleType(fmsRuleType4);
 		fmsRule4.setCardNo("225856431209");
-				
+
 		publicRules.add(fmsRule);
 		publicRules.add(fmsRule2);
 		publicRules.add(fmsRule3);
@@ -91,7 +91,7 @@ public class FMSMockData {
 		fmsRule3.setRuleId(3);
 		fmsRule3.setFmsRuleType(fmsRuleType3);
 		fmsRule3.setCardNo("550078123454");
-		
+
 		FMSRule fmsRule4 = new FMSRule();
 		FMSRuleType fmsRuleType4 = new FMSRuleType();
 		fmsRuleType4.setRuleTypeId(8);
@@ -101,7 +101,7 @@ public class FMSMockData {
 		fmsRule4.setRuleId(7);
 		fmsRule4.setFmsRuleType(fmsRuleType4);
 		fmsRule4.setCardNo("123456780657");
-		
+
 		FMSRule fmsRule5 = new FMSRule();
 		FMSRuleType fmsRuleType5 = new FMSRuleType();
 		fmsRuleType5.setRuleTypeId(9);
@@ -111,7 +111,7 @@ public class FMSMockData {
 		fmsRule5.setRuleId(109);
 		fmsRule5.setFmsRuleType(fmsRuleType5);
 		fmsRule5.setWord("aaa");
-		
+
 		FMSRule fmsRule6 = new FMSRule();
 		FMSRuleType fmsRuleType6 = new FMSRuleType();
 		fmsRuleType6.setRuleTypeId(9);
@@ -133,18 +133,13 @@ public class FMSMockData {
 		return privateRules;
 	}
 
-	/*	
-    public FMSRequest getMockTransaction() {
-		FMSRequest fmsRequest = new FMSRequest();
-		fmsRequest.setMerchantId("MID55893266");
-		List<FMSRule> fmsRules = new ArrayList<>();
-		FMSRule fmsRule = new FMSRule();
-		fmsRule.setEmail("pqr@gmail.com");
-		fmsRule.setCardNo("442256342313");
-		fmsRule.setWord("aaaa");
-		fmsRules.set(0, fmsRule);
-
-		return fmsRequest;
-	}
-	*/
+	/*
+	 * public FMSRequest getMockTransaction() { FMSRequest fmsRequest = new
+	 * FMSRequest(); fmsRequest.setMerchantId("MID55893266"); List<FMSRule>
+	 * fmsRules = new ArrayList<>(); FMSRule fmsRule = new FMSRule();
+	 * fmsRule.setEmail("pqr@gmail.com"); fmsRule.setCardNo("442256342313");
+	 * fmsRule.setWord("aaaa"); fmsRules.set(0, fmsRule);
+	 * 
+	 * return fmsRequest; }
+	 */
 }

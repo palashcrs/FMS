@@ -8,6 +8,8 @@ import com.get.edgepay.fms.model.FMSTransaction;
 
 public interface FMSFacade {
 
+	int saveRule(List<FMSRule> fmsRules) throws Exception;
+
 	List<FMSRule> getPubRuleDetails();
 
 	List<FMSRule> getPriRuleDetails();

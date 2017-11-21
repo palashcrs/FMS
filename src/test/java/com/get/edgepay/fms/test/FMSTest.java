@@ -5,7 +5,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import com.get.edgepay.fms.dao.pgsql.impl.FMSMockData;
-import com.get.edgepay.fms.dto.FMSRequest;
 
 public class FMSTest {
 

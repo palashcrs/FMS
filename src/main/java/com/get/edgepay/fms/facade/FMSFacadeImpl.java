@@ -40,6 +40,13 @@ public class FMSFacadeImpl implements FMSFacade {
 
 	@Autowired
 	private FMSTxnPostgresDao fmsTxnPostgresDao;
+	
+	@Override
+	public int saveRule(List<FMSRule> fmsRules) throws Exception {
+		int response = fmsRulePostgresDao.insert(fmsRules);
+		//TODO: update PUB_RULES, PRI_RULES in cache...
+		return response;
+	}
 
 	@Override
 	public int saveRuleType(FMSRuleType fmsRuleType) throws Exception {

@@ -18,6 +18,30 @@
 
 =============================================================================================
 
+#Endpoint: http://localhost:8900/fmsrule/newrule
+#Json-input:
+{
+   "merchantId":"MID55893266",
+   "fmsRules":[
+      {
+         "email":"xyz@gmail.com",
+         "fmsRuleType":{
+            "ruleTypeId":1
+         },
+         "createdBy":"MID55893266"
+      },
+      {
+         "email":"pqr@gmail.com",
+         "fmsRuleType":{
+            "ruleTypeId":1
+         },
+         "createdBy":"MID55893266"
+      }
+   ]
+}
+
+=============================================================================================
+
 #Endpoint: http://localhost:8900/fmstxn/fraudcalc
 #Json-input:
 {

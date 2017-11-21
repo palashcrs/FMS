@@ -1,5 +1,7 @@
 package com.get.edgepay.fms.util;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,6 +14,7 @@ import com.get.edgepay.fms.dto.FMSRequest;
 import com.get.edgepay.fms.dto.FMSResponse;
 import com.get.edgepay.fms.exception.InputParamNotFoundException;
 import com.get.edgepay.fms.exception.RequestNotFoundException;
+import com.get.edgepay.fms.model.FMSRule;
 import com.get.edgepay.fms.model.FMSRuleType;
 
 public class FMSCommonUtil {
@@ -42,6 +45,20 @@ public class FMSCommonUtil {
 
 		if (obj instanceof FMSRequest) {
 			FMSRequest fmsRequest = (FMSRequest) obj;
+
+			if (FMSConstant.NEW_RULE_FLAG.equals(checkFlag)) {
+				List<FMSRule> fmsRules = fmsRequest.getFmsRules();
+				if (fmsRules == null) {
+					throw new InputParamNotFoundException();
+				}
+				for (FMSRule fmsRule : fmsRules) {
+					if (fmsRule != null) {
+						if (fmsRule.getFmsRuleType() == null) {
+							throw new InputParamNotFoundException();
+						}
+					}
+				}
+			}
 
 			if (FMSConstant.NEW_RULETYPE_FLAG.equals(checkFlag)) {
 				FMSRuleType fmsRuleType = fmsRequest.getFmsRuleType();
@@ -91,8 +108,7 @@ public class FMSCommonUtil {
 			if (arg1.equals(arg2)) {
 				if (FMSRuleConstant.RULETYPE_ACCESSMODE_REVIEW.getRuleTypeValue().equalsIgnoreCase(action)) {
 					fmsStatus = FMSRuleConstant.RULETYPE_ACTION_R.getRuleTypeValue();
-				} else if (FMSRuleConstant.RULETYPE_ACCESSMODE_DECLINE.getRuleTypeValue()
-						.equalsIgnoreCase(action)) {
+				} else if (FMSRuleConstant.RULETYPE_ACCESSMODE_DECLINE.getRuleTypeValue().equalsIgnoreCase(action)) {
 					fmsStatus = FMSRuleConstant.RULETYPE_ACTION_D.getRuleTypeValue();
 				}
 			}
@@ -107,8 +123,7 @@ public class FMSCommonUtil {
 			if (arg2.contains(arg1)) {
 				if (FMSRuleConstant.RULETYPE_ACCESSMODE_REVIEW.getRuleTypeValue().equalsIgnoreCase(action)) {
 					fmsStatus = FMSRuleConstant.RULETYPE_ACTION_R.getRuleTypeValue();
-				} else if (FMSRuleConstant.RULETYPE_ACCESSMODE_DECLINE.getRuleTypeValue()
-						.equalsIgnoreCase(action)) {
+				} else if (FMSRuleConstant.RULETYPE_ACCESSMODE_DECLINE.getRuleTypeValue().equalsIgnoreCase(action)) {
 					fmsStatus = FMSRuleConstant.RULETYPE_ACTION_D.getRuleTypeValue();
 				}
 			}

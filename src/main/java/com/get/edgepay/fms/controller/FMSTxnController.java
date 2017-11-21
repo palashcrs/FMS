@@ -39,7 +39,7 @@ public class FMSTxnController {
 	/**
 	 * REST API to detect fraud in a transaction
 	 * @param fmsRequest
-	 * @return fmsRequest
+	 * @return fmsResponse
 	 */
 	@RequestMapping(value = "/fraudcalc", method = RequestMethod.POST)
 	public FMSResponse getFmsTypes(@RequestBody FMSRequest fmsRequest) {

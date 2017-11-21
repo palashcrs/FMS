@@ -43,7 +43,7 @@ public class FMSRuleTypeController {
 	 * @return fmsRequest
 	 */
 	@RequestMapping(value = "/newruletype", method = RequestMethod.POST)
-	public FMSResponse addNewRuleType(@RequestBody FMSRequest fmsRequest) {
+	public FMSResponse addRuleType(@RequestBody FMSRequest fmsRequest) {
 		log.info("*********/fmsruletype/newruletype | FMSRequest : " + fmsRequest);
 		FMSResponse fmsResponse = new FMSResponse();
 		Object fmsOb = null;
