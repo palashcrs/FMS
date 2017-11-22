@@ -59,7 +59,7 @@ public class FMSRuleTypeServiceImpl implements FMSRuleTypeService {
 		}
 
 		try {
-			allRuleTypeList = fmsFacade.fetchAllRuleTypes();
+			allRuleTypeList = fmsFacade.fetchAllRuleTypesFromCache();
 
 		} catch (RedisConnectionFailureException e) {
 			throw new CacheException();

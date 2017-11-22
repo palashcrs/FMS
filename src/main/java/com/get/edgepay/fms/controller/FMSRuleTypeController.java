@@ -40,7 +40,7 @@ public class FMSRuleTypeController {
 	/**
 	 * REST API to create a new RuleType
 	 * @param fmsRequest
-	 * @return fmsRequest
+	 * @return fmsResponse
 	 */
 	@RequestMapping(value = "/newruletype", method = RequestMethod.POST)
 	public FMSResponse addRuleType(@RequestBody FMSRequest fmsRequest) {
@@ -78,7 +78,7 @@ public class FMSRuleTypeController {
 	/**
 	 * REST API to fetch all RuleTypes
 	 * @param fmsRequest
-	 * @return fmsRequest
+	 * @return fmsResponse
 	 */
 	@RequestMapping(value = "/allruletypes", method = RequestMethod.POST)
 	public FMSResponse getAllRuleType(@RequestBody FMSRequest fmsRequest) {

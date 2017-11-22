@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.RedisConnectionFailureException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.get.edgepay.fms.exception.CacheException;
@@ -44,6 +45,27 @@ public class FMSRuleServiceImpl implements FMSRuleService {
 		}
 
 		return rowsCreated;
+	}
+
+	@Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor = { DBException.class, CacheException.class })
+	@Override
+	public List<FMSRule> getAllRuleS() throws Exception {
+		
+		List<FMSRule> fmsRules = null;
+		
+		if (!FMSUtil.getInstance().isAnyObjectNull(fmsFacade)) {
+			log.debug("Autowired object(s) null! Exit from method");
+			return null;
+		}
+		
+		try {
+			fmsRules = fmsFacade.getAllRules();
+
+		} catch (RedisConnectionFailureException e) {
+			throw new CacheException();
+		}
+		
+		return fmsRules;
 	}
 
 }

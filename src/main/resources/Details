@@ -11,6 +11,7 @@ http://localhost:8900/fms/version
 
 
 http://localhost:8900/fmsrule/newrule
+http://localhost:8900/fmsrule/allrules
 
 http://localhost:8900/fmsruletype/newruletype
 http://localhost:8900/fmsruletype/allruletypes
@@ -20,3 +21,14 @@ http://localhost:8900/fmstxn/fraudcalc
 
 
 D:\Workspace-Eclipse-Gets\FMS\src\main\webapp\FMSServiceExtTest.html
+
+===================================================================================================
+
+*How to run FMS(local)?
+1. Create DB: fms_db
+2. Run: fms_db.sql
+3. Run: fms_static_insert.sql
+4. Add 10 Rules using Postman
+5. Run: Redis_Server_start.cmd
+6. Run: Build_and_Deploy.cmd
+7. Hit API you want to invoke

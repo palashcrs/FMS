@@ -60,7 +60,7 @@ public class FMSTransactionServiceImpl implements FMSTransactionService {
 
 					@Override
 					public Map<Integer, String> call() throws Exception {
-						List<FMSRule> pubRuleDetails = fmsFacade.getPubRuleDetails();
+						List<FMSRule> pubRuleDetails = fmsFacade.getPubRulesFromCache();
 						if (pubRuleDetails != null) {
 							pubRulesTriggeredRes = FMSRuleConfiguration.triggerRule(pubRuleDetails, fmsRequest);
 						}
@@ -80,7 +80,7 @@ public class FMSTransactionServiceImpl implements FMSTransactionService {
 
 					@Override
 					public Map<Integer, String> call() throws Exception {
-						List<FMSRule> priRuleDetails = fmsFacade.getPriRuleDetails();
+						List<FMSRule> priRuleDetails = fmsFacade.getPriRulesFromCache();
 						if (priRuleDetails != null) {
 							priRulesTriggeredRes = FMSRuleConfiguration.triggerRule(priRuleDetails, fmsRequest);
 						}

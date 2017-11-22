@@ -1,10 +1,8 @@
 package com.get.edgepay.fms.service;
 
-public interface CacheService {
+public interface FMSCacheService {
 
 	public void loadAllRuleTypes() throws Exception;
-
-	public void loadAllRules();
 
 	public void loadAllPubRules() throws Exception;
 

@@ -1,5 +1,7 @@
 package com.get.edgepay.fms.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,9 @@ import com.get.edgepay.fms.exception.CacheException;
 import com.get.edgepay.fms.exception.DBException;
 import com.get.edgepay.fms.exception.DuplicateRecordException;
 import com.get.edgepay.fms.exception.InputParamNotFoundException;
+import com.get.edgepay.fms.exception.RecordFetchException;
 import com.get.edgepay.fms.exception.RequestNotFoundException;
+import com.get.edgepay.fms.model.FMSRule;
 import com.get.edgepay.fms.service.FMSRuleService;
 import com.get.edgepay.fms.util.FMSCommonUtil;
 
@@ -73,6 +77,38 @@ public class FMSRuleController {
 
 		return fmsResponse;
 
+	}
+	
+	/**
+	 * REST API to fetch all Rules
+	 * @param fmsRequest
+	 * @return fmsResponse
+	 */
+	@RequestMapping(value = "/allrules", method = RequestMethod.POST)
+	public FMSResponse getAllRules(@RequestBody FMSRequest fmsRequest) {
+		log.info("*********/fmsrule/allrules | FMSRequest : " + fmsRequest);
+		FMSResponse fmsResponse = new FMSResponse();
+		List<FMSRule> allRuleS = null;
+		
+		try {
+			allRuleS = fmsRuleService.getAllRuleS();
+			fmsResponse.setFmsResponseCode(FMSResponseStatus.SUCCESS.toString());
+
+		} catch (Exception e) {
+			fmsResponse.setFmsResponseCode(FMSResponseStatus.FAILURE.toString());
+			log.info("Exception occurs : " + e);
+			if (e instanceof RecordFetchException) {
+				FMSCommonUtil.getInstance().addError(fmsResponse, FMSErrorCode.RECORD_FETCH_ERROR);
+			} else if (e instanceof CacheException) {
+				FMSCommonUtil.getInstance().addError(fmsResponse, FMSErrorCode.CACHE_ERROR);
+			}
+		} finally {
+			fmsResponse.setFmsResult(allRuleS);
+		}
+
+		
+		return fmsResponse;
+		
 	}
 
 }

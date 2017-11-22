@@ -7,5 +7,6 @@ import com.get.edgepay.fms.model.FMSRule;
 public interface FMSRuleService {
 
 	int createRule(List<FMSRule> fmsRules) throws Exception;
-	
+
+	List<FMSRule> getAllRuleS() throws Exception;
 }
