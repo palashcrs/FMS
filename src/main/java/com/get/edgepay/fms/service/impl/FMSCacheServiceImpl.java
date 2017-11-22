@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.get.edgepay.fms.constant.FMSCacheConstant;
 import com.get.edgepay.fms.facade.FMSFacade;
 import com.get.edgepay.fms.model.FMSRule;
 import com.get.edgepay.fms.model.FMSRuleType;
@@ -20,12 +19,6 @@ public class FMSCacheServiceImpl implements FMSCacheService {
 
 	private static final Logger log = LoggerFactory.getLogger(FMSCacheServiceImpl.class);
 
-	private static final String ALL_RULETYPES = FMSCacheConstant.ALL_RULETYPES.name();
-
-	private static final String PUB_RULES = FMSCacheConstant.PUB_RULES.name();
-
-	private static final String PRI_RULES = FMSCacheConstant.PRI_RULES.name();
-	
 	@Autowired
 	private FMSFacade fmsFacade;
 
