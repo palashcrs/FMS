@@ -42,15 +42,14 @@ public class CacheServiceImpl implements CacheService {
 	/**
 	 * Method to load all data from Cache on startup.
 	 * @throws Exception
-	 * 
 	 */
 	@PostConstruct
 	public void loadAll() throws Exception {
 		log.info("******Reload all data on startup!");
 		loadAllRuleTypes();
 		// loadAllRules();
-		loadAllPubRuleDetails();
-		loadAllPriRuleDetails();
+		loadAllPubRules();
+		loadAllPriRules();
 		// loadAllTransactions();
 	}
 
@@ -68,16 +67,16 @@ public class CacheServiceImpl implements CacheService {
 	}
 
 	@Override
-	public void loadAllPubRuleDetails() {
-		List<FMSRule> pubRuleDetails = fmsRulePostgresDao.getPubRuleDetails();
+	public void loadAllPubRules() throws Exception {
+		List<FMSRule> pubRuleDetails = fmsRulePostgresDao.getPubRules();
 		cacheUtil.removeFromCache(PUB_RULES, FMSRuleCacheDto.class);
 		cacheUtil.addToCache(PUB_RULES, PUB_RULES, pubRuleDetails);
 
 	}
 
 	@Override
-	public void loadAllPriRuleDetails() {
-		List<FMSRule> priRuleDetails = fmsRulePostgresDao.getPriRuleDetails();
+	public void loadAllPriRules() throws Exception {
+		List<FMSRule> priRuleDetails = fmsRulePostgresDao.getPriRules();
 		cacheUtil.removeFromCache(PRI_RULES, FMSRuleCacheDto.class);
 		cacheUtil.addToCache(PRI_RULES, PRI_RULES, priRuleDetails);
 	}

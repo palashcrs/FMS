@@ -6,9 +6,9 @@ public interface CacheService {
 
 	public void loadAllRules();
 
-	public void loadAllPubRuleDetails();
+	public void loadAllPubRules() throws Exception;
 
-	public void loadAllPriRuleDetails();
+	public void loadAllPriRules() throws Exception;
 
 	public void loadAllTransactions();
 

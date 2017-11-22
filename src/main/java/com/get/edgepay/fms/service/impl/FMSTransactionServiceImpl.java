@@ -39,8 +39,7 @@ public class FMSTransactionServiceImpl implements FMSTransactionService {
 	@Autowired
 	private FMSFacade fmsFacade;
 
-	@Transactional(rollbackFor = { DBException.class, InterruptedException.class, ExecutionException.class,
-			CacheException.class })
+	@Transactional(rollbackFor = { DBException.class, InterruptedException.class, ExecutionException.class, CacheException.class })
 	@Override
 	public FMSTransaction calculateFraudAndSaveTxn(FMSRequest fmsRequest) throws Exception {
 		FMSTransaction fmsTxn = null;
