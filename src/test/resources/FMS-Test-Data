@@ -24,7 +24,7 @@
    "merchantId":"MID55893266",
    "fmsRules":[
       {
-         "email":"xyz@gmail.com",
+         "email":"abc@gmail.com",
          "fmsRuleType":{
             "ruleTypeId":1
          },
@@ -33,7 +33,63 @@
       {
          "email":"pqr@gmail.com",
          "fmsRuleType":{
-            "ruleTypeId":1
+            "ruleTypeId":2
+         },
+         "createdBy":"MID55893266"
+      },
+      {
+         "email":"zzz@cc.co.in",
+         "fmsRuleType":{
+            "ruleTypeId":3
+         },
+         "createdBy":"MID55893266"
+      },
+      {
+         "email":"pal@rs.com",
+         "fmsRuleType":{
+            "ruleTypeId":4
+         },
+         "createdBy":"MID55893266"
+      },
+      {
+         "cardNo":"442256342313",
+         "fmsRuleType":{
+            "ruleTypeId":5
+         },
+         "createdBy":"MID55893266"
+      },
+      {
+         "cardNo":"225856431209",
+         "fmsRuleType":{
+            "ruleTypeId":6
+         },
+         "createdBy":"MID55893266"
+      },
+      {
+         "cardNo":"550078123454",
+         "fmsRuleType":{
+            "ruleTypeId":7
+         },
+         "createdBy":"MID55893266"
+      },
+      {
+         "cardNo":"123456780657",
+         "fmsRuleType":{
+            "ruleTypeId":8
+         },
+         "createdBy":"MID55893266"
+      },
+      {
+         "word":"aaa",
+         "fmsRuleType":{
+            "ruleTypeId":9
+         },
+         "createdBy":"MID55893266"
+      },
+      {
+         "word":"bbb",
+         "fmsRuleType":{
+            "ruleTypeId":10
          },
          "createdBy":"MID55893266"
       }

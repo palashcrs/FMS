@@ -44,12 +44,16 @@ public class FMSCacheServiceImpl implements FMSCacheService {
 
 	@Override
 	public void loadAllPubRules() throws Exception {
+		fmsFacade.removePubRulesFromCache();
 		List<FMSRule> pubRules = fmsFacade.getPubRulesFromDB();
+		fmsFacade.savePubRuleInCache(pubRules);
 	}
 
 	@Override
 	public void loadAllPriRules() throws Exception {
+		fmsFacade.removePriRulesFromCache();
 		List<FMSRule> priRules = fmsFacade.getPriRulesFromDB();
+		fmsFacade.savePriRuleInCache(priRules);
 	}
 
 	@Override

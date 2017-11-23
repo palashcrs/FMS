@@ -28,7 +28,7 @@ D:\Workspace-Eclipse-Gets\FMS\src\main\webapp\FMSServiceExtTest.html
 1. Create DB: fms_db
 2. Run: fms_db.sql
 3. Run: fms_static_insert.sql
-4. Add 10 Rules using Postman
-5. Run: Redis_Server_start.cmd
-6. Run: Build_and_Deploy.cmd
+4. Run: Redis_Server_start.cmd
+5. Run: Build_and_Deploy.cmd
+6. Add 10 Rules using Postman
 7. Hit API you want to invoke
